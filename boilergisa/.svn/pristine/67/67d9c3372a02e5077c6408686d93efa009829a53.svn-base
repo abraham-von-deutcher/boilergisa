@@ -1,0 +1,40 @@
+package com.my.boilergisa.controller;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.my.boilergisa.service.UserService;
+import com.my.boilergisa.dto.UserVO;
+
+import lombok.extern.java.Log;
+
+@Controller
+@Log
+public class UserRegisterController {
+	
+	//@Autowired UserService userService;
+	
+	//회원가입 페이지
+	@GetMapping(value = "/user/userRegister")
+	public String registerGET() throws Exception{
+		log.info("회원가입 페이지 이동");
+		return "/user/userRegister";
+	}
+	/*
+	//회원가입  작성
+	@RequestMapping(value = "/userRegister", method = RequestMethod.POST)
+	public String registerPOST(UserVO userVO, RedirectAttributes redirectAttributes) throws Exception{
+		logger.info("회원가입 처리");
+		String hashedPw = BCrypt.hashpw(userVO.getUserPassword(), BCrypt.gensalt());
+		userVO.setUserPassword(hashedPw);
+		userService.register(userVO);
+		redirectAttributes.addFlashAttribute("msg","Registered");
+		return "redirect:/user/userLogin";
+	}
+*/
+}

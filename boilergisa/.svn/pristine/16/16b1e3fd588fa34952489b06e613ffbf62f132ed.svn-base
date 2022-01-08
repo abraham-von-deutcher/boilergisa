@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/basic">
+	<th:block layout:fragment="title">
+		<title>로그인 페이지</title>
+	</th:block>
+	<th:block layout:fragment="add-css"><link rel="stylesheet" th:href="@{/static/css/engnr/engnrHome.css}" /></th:block>
+	<th:block layout:fragment="centerHeader"><h5>엔지니어 게시판</h5></th:block>
+	
+ <th:block layout:fragment="content">
+ <div class="container">
+ 
+ </div>
+ 
+ </th:block>
+ <th:block layout:fragment="engnrBottom">
+  <ul class="engnrBottom">
+   <li class='on' onclick="location.href='/engnr/engnrHome'">
+	<img src="/static/img/engnr/home-bgs-partner_on.png">
+	<p>홈</p>
+   </li>		
+   <li onclick="location.href='/engnr/engnrOrder'">
+	<img src="/static/img/engnr/order-bgs-partner_off.png">
+		<p>견적서</p>
+   </li>		
+   <li onclick="location.href='/engnr/engnrChatbox'">
+   	<img src="/static/img/engnr/care-bgs-partner_off.png">
+   	<span id="unread" class="label label-warning"></span>
+	<p>상담</p>	
+   </li>		
+   <li onclick="location.href='/engnr/myRecordList'">
+	<img src="/static/img/engnr/story-bgs-partner_off.png">
+		<p>기록</p>
+   </li>		
+   <li onclick="location.href='/engnr/engnrMypage'">
+	<img src="/static/img/engnr/mypage-bgs-partner_off.png">
+	<p>마이페이지</p>
+	
+   </li>
+  </ul>
+ </th:block>
+</body>
+</html>

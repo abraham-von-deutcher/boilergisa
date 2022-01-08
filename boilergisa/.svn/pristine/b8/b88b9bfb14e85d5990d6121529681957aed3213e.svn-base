@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<body th:fragment="main-body">
+
+<div classs="wrapper">
+<th:block layout:fragment="sidebar"></th:block>
+	<div class="wrapper-container">
+		<nav class="navbar navbar-default fixed-top">
+			<div class="container">
+				<div class="leftHeader"><th:block layout:fragment="leftHeader"></th:block></div>
+				<div class="centerHeader"><th:block layout:fragment="centerHeader"></th:block></div>
+				<div class="rightHeader"><th:block layout:fragment="rightHeader"></th:block></div>
+			</div>
+		</nav>
+	<div class="main">
+		<div class="main-content">
+			<div class="clearfix">
+				<th:block layout:fragment="content"></th:block>
+			</div>
+	</div>
+	</div>
+	</div>
+</div>	
+<div th:replace="fragments/modal :: modal"></div>
+<th:block layout:fragment="script"></th:block>
+</body>
+</html>

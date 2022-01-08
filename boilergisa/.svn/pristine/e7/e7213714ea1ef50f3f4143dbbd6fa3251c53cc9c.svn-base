@@ -1,0 +1,76 @@
+/* -------------TYPOGRAPHY ----------- */
+body{
+font-family: 'Open Sans', sans-serif;
+padding:0;
+margin:0;
+}
+/* -------------NEWS FEED ----------- */
+
+
+/* -------------PRODUCT PAGE ----------- */
+#boxList{
+width: 100%;
+list-style: none;
+margin: 0;
+padding: 0;
+padding-top: 56px;
+}
+#boxList li{
+width: 100%;
+height: 80px;
+display: flex;
+border-bottom: 1px solid #c0c0c4;
+cursor: pointer;
+padding: 0;
+margin: 0;
+}
+#boxList li:hover{
+background-color: #efefef;
+}
+#boxList li img{
+width: 50px;
+height: 50px;
+margin: 15px 8px;
+}
+.talkListInfo{
+width: 100%;
+margin: 0px 4px;
+padding: 0px;
+font-size: 12px;
+display: flex;
+flex-direction: column;
+position: relative;
+}
+.talkListInfo h1{
+font-size: 14px;
+padding: 0;
+margin: 5px 8px;
+}
+.talkContext{
+display: flex;
+flex-direction: row;
+}
+.talkContext span{
+right: 8px;
+font-size: 12px;
+}
+.talkListContent{
+padding: 0;
+padding-right: 40px;
+margin: 0;
+text-overflow: ellipsis;
+overflow: hidden;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+}
+
+.chatTime{
+font-size: 12px;
+padding: 0px;
+margin: 4px;
+right: 0;
+float: right;
+position: absolute;
+bottom: 0;
+}

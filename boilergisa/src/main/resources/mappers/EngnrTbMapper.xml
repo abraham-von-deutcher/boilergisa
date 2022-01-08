@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.boilergisa.dao.EngnrTbMapper">
+
+	<select id="engnrList" parameterType="com.my.boilergisa.dto.EngnrVO" resultType="com.my.boilergisa.dto.EngnrVO">
+		SELECT 
+			engnr_id,
+			engnr_pass,
+			engnr_name,
+			address1,
+			address2,
+			engnr_number,
+			engnr_intro,
+			businesstype,
+			worktime1,
+			worktime2,
+			breaktime,
+			engnr_profile,
+			engnr_rating
+		FROM engnrTb
+		<where>
+			<if test="setAddress !=null and setAddress !=''"><![CDATA[ and engnr_setAddress = #{setAddress} ]]></if>
+		</where>
+	</select>
+     	
+ 	<select id="getEngnrInfo" parameterType="com.my.boilergisa.dto.EngnrVO" resultType="com.my.boilergisa.dto.EngnrVO">
+ 		SELECT
+ 		  * 
+		FROM engnrTb 
+		<where>
+			<if test="engnrID !=null and engnrID !=''"><![CDATA[ and engnr_id = #{engnrID} ]]></if>
+ 		</where>
+ 	</select>
+ 	
+ 	<select id="engnrLogin" parameterType="com.my.boilergisa.dto.EngnrVO" resultType="Int">
+ 		SELECT count(*) 
+		FROM engnrTb 
+		<where>
+			<if test="engnrID !=null and engnrID !=''"><![CDATA[ and engnr_id = #{engnrID} ]]></if>
+			<if test="engnrPassword !=null and engnrPassword !=''"><![CDATA[ and engnr_pass = #{engnrPassword} ]]></if>
+ 		</where>
+ 	</select> 	
+ 	
+ 	<update id="engnrKeepLogin">
+ 		UPDATE engnrTb
+ 		SET session_key = #{sessionID},
+ 			session_limit = #{sessionLimit}
+ 		<where>
+	 		<if test="engnrID !=null and engnrID !=''"><![CDATA[ and engnr_id = #{engnrID} ]]></if>
+ 		</where>
+ 	</update>
+ 	
+ 	<update id="updateLoginDate">
+ 		UPDATE engnrTb
+ 		SET engnr_loginDate = NOW()
+ 		<where>
+	 		<if test="engnrID !=null and engnrID !=''"><![CDATA[ and engnr_id = #{engnrID} ]]></if>
+ 		</where>
+ 	</update>
+ 	
+ 	<select id="checkEngnrWithSessionKey" parameterType="com.my.boilergisa.dto.EngnrVO" resultType="String">
+        SELECT 
+			engnr_id
+        FROM engnrTb
+        <where>
+	 		<if test="sessionID !=null and sessionID !=''"><![CDATA[ and session_key = #{sessionID} ]]></if>
+	 		<![CDATA[ and session_limit > NOW() ]]> 
+ 		</where>
+    </select>
+    
+    <update id="updateEngnrInfo" parameterType="com.my.boilergisa.dto.EngnrVO">
+ 		UPDATE engnrTb
+ 		SET
+ 			engnr_name = #{engnrName},
+			address1 = #{address1},
+			address2 = #{address2},
+			engnr_number = #{engnrNumber},
+			engnr_intro = #{engnrIntro},
+			businesstype = #{businessType},
+			worktime1 = #{workTime1},
+			worktime2 = #{workTime2},
+			breaktime = #{breakTime}
+		where engnr_id = #{engnrID}
+ 	</update>
+    
+</mapper>

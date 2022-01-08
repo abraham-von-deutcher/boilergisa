@@ -1,0 +1,111 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/dist/css/customer/userMain.css">
+<link rel="stylesheet" href="/resources/dist/css/bgs.css">
+
+<title>보일러기사</title>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/resources/dist/js/bootstrap.js"></script>
+
+
+<script type="text/javascript">
+
+
+function getInfiniteUnread(){
+	setInterval(function() {
+		getUnread();
+	}, 4000);
+}
+function showUnread(result){
+	$('#unread1').html(result);
+	$('#unread2').html(result);
+
+}
+
+$(document).ready(function () {    
+$('.bgstoolbar .bgs_toggle').click(function(){
+	$('body').toggleClass('active');
+});
+$('.history-back').click(function(){
+    $('body').removeClass('active');
+});   
+});
+ 
+</script>
+</head>
+<body>		
+<aside id="menu">
+	<header>
+		<img src="/resources/dist/img/arrow-back.png" class="history-back" >
+		<img src="/resources/dist/img/setting.png" onclick="location.href='/user/userSetting'" class="login_setting">
+	</header>
+   <div class="login-area">
+      <img src="/resources/dist/img/${userID.userProfile}" alt="profil" class="profil">
+      <div>
+      	<p>${userID.userName} 님 </p>
+      </div>
+   </div>
+     <nav id ="nav_menu">
+        <ul>
+	        <p class = "ctgr">나의 활동</p>
+			<li onclick="location.href='myRequestInfo.jsp'">견적서 정보</li>
+		    <li onclick="location.href='box.jsp'">상담내역<span id="unread1" class="label label-warning"></span></li>
+		    <li onclick="location.href='searchEngnr.jsp'">가맹점 찾기</li>
+		    <li onclick="location.href='/html/notice_bgs.jsp'">공지사항</li>
+		    <li>입점문의</li>
+		   </ul>
+    </nav>
+ </aside>  
+<div class="userHome">
+	<header class ="bgstoolbar" >
+		<div class="header-inner"><img class="bgs_toggle" src="/resources/dist/img/customer/bgs_menu.png">
+			<span id="unread2" class="label label-warning"></span>
+			<div class="bgs_tool">
+			  <img src="/resources/dist/img/bgs_search.png" class="bgs_search" onclick="location.href='searchEngnr.jsp'">
+			  <img src="/resources/dist/img/bgs_noti_unfill.png" class="bgs_notice" onclick="location.href='/html/notice_bgs.html'">
+		   </div>
+		</div>  
+	</header>
+<div class="main">
+	<div class="introBg">
+		<p class = "main-title"> 안전해서 믿을 수 있는 보일러기사</p>
+		<p class = "sub-main-title"> 보일러기사를 통해 쉽고,<br>안전하게 견적 받아보세요.</p>
+	</div>
+	
+	<div class="select-service">
+		<div id="findengnr-area">
+		    <div class="findengnr-icon" onclick="location.href='engnr/searchEngnr'">
+		        <img src="/resources/dist/img/bgs_findegnr.png" class="findengnr">
+		        <p>전문가 찾기</p>
+			</div>
+		</div>
+	<div id="boilerinstall-area">
+	    <div class="boilerinstall-icon" onclick="location.href='/request/requestBoiler'">
+	       <img src="/resources/dist/img/bg_boiler_instl.png" class="boiler_inst">
+	       <p>보일러 견적</p>
+		</div>
+	</div>
+	<div id="waterheaterinstall-area">
+		<div class = "waterheaterinstall-icon" onclick="location.href='/request/requestWaterHeater'">
+	        <img src="/resources/dist/img/bgs_waterheater_instl.png" class="waterheater_inst">
+	        <p>온수기 견적</p>
+	    </div>
+	</div>
+	</div>   
+	
+	
+	 
+</div>
+</div>
+</body>
+</html>

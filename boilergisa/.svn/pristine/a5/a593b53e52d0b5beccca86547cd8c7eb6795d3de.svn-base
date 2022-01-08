@@ -1,0 +1,85 @@
+.main{
+padding:74px 16px;
+}
+.myRequestContent{
+width:100%;
+height:40px;
+display: flex;
+flex-direction: row;
+font-size:14px;
+border-bottom:1px solid #696969;
+text-align:center;
+}
+.myRequestContent span{
+color: #FF9800;
+font-weight:bolder;
+padding:0 4px;
+}
+.requestDate{
+width:40%;
+color:#696969;
+}
+.requestInfo{
+width:60%;
+color:#696969;
+}
+.nullQuoteList{
+width:100%;
+padding:16px;
+color:#696969;
+font-weight:bolder;
+text-align:center;
+}
+.quoteList{
+padding-top:16px;
+}
+.quoteList li{
+padding-top: 4px;
+}
+.engnrCard{
+border: 1px solid #c0c0c4;
+padding: 15px;
+border-radius: 5px;
+margin-bottom: 10px;
+cursor: pointer;
+}
+.engnrCard:hover{
+background: #efefef;
+}
+.engnrInfo{
+width: 100%;
+height: 50%;
+padding: 0;
+margin-top: 10px;
+display: flex;
+}
+.engnrInfo a{
+text-decoration: none;
+padding: 0;
+margin: 0;
+}
+.engnrContext{
+width: 100%;
+line-height: 0.5em;
+}
+.engnrContext h1{
+font-size: 18px;
+font-weight: bold;
+margin: 0px;
+}
+.engnrQuote{
+color: #8d8d8d;
+font-weight: bold;
+font-size: 15px;
+}
+.quotePrice{
+display: inline-block;
+font-size: 15px;
+}
+.wonPrice{
+display: inline-block;
+}
+.wonPrice span{
+color: #FF9800;
+font-size: 19px;
+}

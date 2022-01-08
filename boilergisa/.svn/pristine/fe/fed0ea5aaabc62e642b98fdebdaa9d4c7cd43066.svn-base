@@ -1,0 +1,106 @@
+package com.my.boilergisa.controller;
+
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.http.Cookie;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
+
+import com.my.boilergisa.dto.LoginDTO;
+import com.my.boilergisa.dto.CustmrVO;
+import com.my.boilergisa.service.CustmrService;
+import com.my.boilergisa.utils.EncryptionUtils;
+
+import lombok.extern.java.Log;
+
+@Controller
+@Log
+
+public class CustmrLoginController {
+	
+	@Autowired 
+	CustmrService custmrService;
+	
+	//로그인 페이지
+	@GetMapping(value = "/custmr/custmrLogin")
+	 public ModelAndView custmrLoginPage(String custmrID, HttpSession session){
+		ModelAndView mv = new ModelAndView();
+		
+		String custmr = (String) session.getAttribute("custmrID");
+		if(custmr == null) {
+			mv.setViewName("/custmr/custmrLogin");
+			log.info("로그인페이지 이동");
+		}else {
+			mv.setViewName("/custmr/custmrMain");
+			log.info("고객 메인페이지 이동");
+		}
+		return mv;	
+		
+	}
+	
+	//로그인처리
+	@PostMapping(value = "/custmr/custmrLogin")
+	@ResponseBody	
+	public Map<String,Object> userLoginPro(@RequestBody Map<String,Object> input, HttpServletRequest request)throws Exception{
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		HttpSession session = request.getSession();
+		
+		String custmrId = (String)input.get("custmrID");
+		
+		if(session.getAttribute("custmrID") != null ){
+			session.removeAttribute("custmrID"); 
+		}
+		
+		int result = custmrService.custmrLogin(input);
+		
+		if(result > 0) {
+			session.setAttribute("custmrID",custmrId);
+			
+			if(input.get("custmrCookie") != null){
+				int amount = 60 * 60 * 24 * 365;
+	        	Date sessionLimit = new Date(System.currentTimeMillis() + (1000 * amount));
+				resultMap.put("custmrID",custmrId);
+				resultMap.put("sessionID",session.getId());
+				resultMap.put("sessionLimit",sessionLimit);
+				
+	        	custmrService.custmrKeepLogin(resultMap);
+			}
+			custmrService.updateLoginDate(custmrId);
+			
+			resultMap.put("result", "Success");
+		}else {
+			resultMap.put("result", "Failed");
+		}
+		return resultMap;
+	}
+	
+	@GetMapping(value = "/custmr/custmrLogout")
+	public String custmrLogout(HttpServletRequest req, HttpServletResponse res, HttpSession session) throws Exception{
+		Object object = session.getAttribute("custmrID");
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		if(object != null) {
+			String custmrId = (String)object;
+			session.removeAttribute("custmrID");
+			session.invalidate();
+			Cookie loginCookie = WebUtils.getCookie(null, custmrId);
+		
+		}
+		
+		return "redirect:/custmr/custmrLogin";
+	}
+}

@@ -1,0 +1,420 @@
+body:after{
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+overflow: auto;
+background-color: rgba(0,0,0,0.4);
+opacity: 0;
+visibility: hidden;
+transition: 0.4s;
+}
+body.active:after{
+opacity: 1;
+visibility: visible;
+}
+body.active{
+position: relative;
+left: 0;
+overflow: hidden;
+}
+body.active aside{
+margin-left: 0;
+}
+
+/* -------------ASIDE(NAVIGATION) ----------- */
+aside{
+position: fixed;
+top: 0;
+height: 100vh;
+width: 300px;
+margin-left: -300px;
+transition: 0.4s;
+display: flex;
+flex-direction: column;
+background-color: white;
+z-index: 999;
+}
+#menu header{
+width: 100%;
+height: 56px;
+position: relative;
+padding:0;
+margin:0;
+}
+.history-back{
+width:30px;
+margin:13px 17px;
+}
+aside .login-area{
+width: 100%;
+height: 110px;
+display: flex;
+align-items: center
+}
+aside .profil{
+width: 60px;
+height: 60px;
+margin: 30px;
+border-radius: 50%;
+}
+.login_setting{
+width: 30px;
+height: 30px;
+float: right;
+margin: 16px 30px;
+}
+.login_setting:hover{
+background: #efefef;	
+}
+aside #nav_menu{
+background: #84d2ff;
+flex: 3;
+font-size: medium;
+}
+#nav_menu ul{
+list-style: none;
+top: 0;
+padding: 0;
+margin: 0;  
+}
+#nav_menu ul li{
+top: 0;
+bottom: 0;
+height: 8vh;
+line-height: 8vh;
+border-bottom: 1px solid #4fb6f1;
+color: rgba(255,255,255,255);
+font-weight:bolder;
+padding-left: 13px;
+}
+#nav_menu ul li:hover{
+background: #66bdf0;
+}
+#nav_menu ul .ctgr{
+line-height: 9vh;
+padding-left: 13px;
+margin: 0;
+border: 0;
+background-color: #f7f7f7;
+color: rgb(168, 168, 168);
+}
+#nav_menu .label-warning{
+padding: 4px 6px;
+margin: 20px 10px;
+position: absolute;
+z-index: 10;
+}
+
+/* -------------NEWS FEED ----------- */
+
+.bgstoolbar{
+position: relative;
+height: 56px;
+width: 100%;
+border-bottom: 1px solid #c4c4c4;
+transition: 0.4s;
+display: flex;
+padding:0;
+margin:0;
+}
+.bgstoolbar .label-warning{
+padding: 4px 6px;
+position: absolute;
+left: 30px;
+top: 30px;
+z-index: 10;
+}
+
+.bgs_toggle{
+width: 30px;
+height: 20px;
+position: absolute;
+top: 15px;
+left: 13px;
+display: inline-block;
+}
+.
+.bgs_toggle:hover{
+background: #efefef;
+}
+
+.bgs_tool{
+width: 120px;
+height: auto;
+text-align: center;
+top: 0;
+right: 0;
+display: flex;
+position: absolute;
+float: right;
+}
+.bgs_search{
+width: 30px;
+height: 32px;
+margin: 12px;
+padding: 0;
+}
+.bgs_search:hover{
+background: #efefef;	
+}
+.bgs_notice{
+width: 30px;
+height: 32px;
+margin: 12px;
+padding: 0;
+}
+.bgs_notice:hover{
+background: #efefef;	
+}
+/* -------------LIST ----------- */
+
+.main-title {
+margin: 0;
+color: #FF9800;
+font-size: 14px;
+font-weight: bold;
+}
+.sub-main-title{
+margin-top: 10px;
+font-size: 14px;
+font-weight: bold;
+}
+
+.select-service{
+width: 100%;
+height: 200px;
+margin: 0;
+display: flex;
+}
+.select-service p{
+font-size: 10px;
+}
+#findengnr-area{
+width: 33.3333%;
+height: 100px;
+text-align: center;
+}
+#findengnr-area .findengnr-icon{
+width: 100px;
+padding-top: 10px;
+margin: 10px;
+border-radius: 8px;
+display: inline-block;
+}
+#findengnr-area .findengnr-icon:hover{
+background: #efefef;
+}
+#findengnr-area .findengnr{
+width: 30px;
+height: 30px;
+}
+#boilerinstall-area{
+width: 33.3333%;
+height: 100px;
+text-align: center;
+}
+#boilerinstall-area .boilerinstall-icon{
+width: 100px;
+padding-top: 10px;
+margin: 10px;
+border-radius: 8px;
+display: inline-block;
+}
+#boilerinstall-area .boilerinstall-icon:hover{
+background: #efefef;
+}
+#boilerinstall-area .boiler_inst{
+width: 30px;
+height: 30px;
+}
+#waterheaterinstall-area{
+width: 33.3333%;
+height: 100px;
+text-align: center;
+}
+#waterheaterinstall-area .waterheaterinstall-icon{
+width: 100px;
+padding-top: 10px;
+margin: 10px;
+border-radius: 8px;
+display: inline-block;
+}
+#waterheaterinstall-area .waterheaterinstall-icon:hover{
+background: #efefef;
+}
+#waterheaterinstall-area .waterheater_inst{
+width: 30px;
+height: 30px;
+}
+.kinds-installation{
+margin: 0;
+padding: 0;
+margin-bottom: 40px;
+background-color: #ffffff;
+}
+.kinds-installation h1{
+font-size: 13px;
+padding: 10px 0px 10px 10px;
+margin: 0;
+color: #9b9b9b;	
+}
+.orderList{
+width: 100%;
+background-color: #cccccc;
+display: flex;
+flex-wrap: wrap;
+}
+.orderList li{
+width: 50%;
+padding: 0; 
+background-color: #ffffff;
+cursor: pointer;
+font-size: 10px;
+padding:4px;
+}
+.orderList li:nth-of-type(n+5){
+display:none;
+}
+.orderList li:hover{
+background: #ebebeb;
+}
+.engnrInfo{
+width: 100%;
+height: 35px;
+display: flex;
+font-size: 10px;
+border-bottom: 0.5px solid #909090;
+}
+.engnrInfo img{
+width: 15%;
+margin: 4px;
+}
+.engnrInfo .engnrName{
+width: 55%;
+text-align: center;
+align-self: center;
+font-size: 11px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+display:inline-block;
+}
+.engnrInfo .recordDate{
+width: 30%;
+align-self: center;
+text-align: right;
+padding: 0 8px;
+}
+.engnrInfo:hover{
+background: #efefef;
+cursor: pointer;
+}
+.recordInfo:hover{
+background: #efefef;
+cursor: pointer;
+}
+.installInfo{
+width: 100%;
+text-align: center;
+}
+.installInfo .installEqu{
+font-size: 10px;
+font-weight: bold;
+padding: 4px;
+margin: 0;
+}
+.installInfo .installAddr{
+width:100%;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+display:inline-block;
+padding: 4px;
+margin: 0;
+}
+.recordImg{
+width: 100%;
+height: 100px;
+}
+.recordImg img{
+width: 100%;
+height: 100%;
+}
+.recordCommentary{
+width:100%;
+height:25px;
+padding-top: 4px;
+}
+.recordHit{
+float:right;
+padding: 5px;
+}
+.recordCommentary .totalRating{
+color:#FF0000;
+font-weight:bold;
+}
+.case-more{
+float:right;
+font-size:11px;
+color:#0000ff;
+padding:8px;
+}
+
+.connectAs{
+width:100%;
+display: flex;
+flex-direction: column;
+padding-bottom: 16px;
+}
+
+.connectAs p{
+font-size: 13px;
+padding: 10px 0px 10px 10px;
+margin: 0;
+color: #9b9b9b;		
+}
+.asContent{
+width:100%;
+height: auto;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+background-color: #cccccc;
+}
+.asContent img{
+width:46%;
+height: auto;
+margin:2%;
+border:1px solid #cccccc;
+background-color:#ffffff;
+}
+.introBg{
+padding-bottom:16px;
+}
+
+
+.footer{
+background-color:#efefef;
+font-size: 13px;
+}
+/*-------------- media quary --------------*/
+@media (min-width:800px) {
+aside{
+margin-left: 0;
+}
+.userHome {
+padding-left: 300px;
+}
+.bgs_toggle{
+display: none;
+}
+.bgstoolbar .label-warning{
+display: none;
+}
+.history-back{
+display: none;
+}
+}

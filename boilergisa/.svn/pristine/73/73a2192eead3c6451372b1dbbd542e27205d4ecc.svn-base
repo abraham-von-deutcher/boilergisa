@@ -1,0 +1,179 @@
+$(function(){	
+	
+	$("#userBtn").prop("disable", true);
+	var emailOk = false;
+    var pw1Ok = false;
+    var pw2Ok = false;
+    var nameOk = false;
+    var agreeOk = false;
+    var isOk = false;    
+    
+    //E-mail 체크
+    $("#userID").keyup(function(){
+        var inputTxt = $("#userID").val();
+        var chkEmail = /^[a-zA-Z0-9]+@([a-zA-Z0-9]{1,10})\.([a-zA-Z]{1,10})+$/;
+        if( chkEmail.test(inputTxt) ){
+            emailOk = true;
+            $("#userID").removeClass("is-invalid");
+            $("#userID").addClass("is-valid");
+            
+            isOk = allOk(emailOk, pw1Ok, pw2Ok, nameOk, agreeOk);
+            if( isOk == true ){
+                $("#userBtn").prop("disabled",false);
+            }
+            
+		$.ajax({
+		    url: '/user/userIdCheck',
+		    type: 'POST',
+		    dataType: 'json', //서버로부터 내가 받는 데이터의 타입
+		    data: userID,
+			contentType: "application/json; charset=UTF-8",
+		    success: function(data){
+				if(data.confirm === "OK"){
+					$('#checkMessage').html('사용 가능한 아이디입니다.');  
+					$("#checkModal").modal('show');
+				}else{
+					$('#checkMessage').html('이미 존재하는 아이디입니다.');  
+					$("#checkModal").modal('show');
+				}
+			},
+		    error: function (){
+				
+		    }
+		}); 
+            
+        }else{
+            emailOk = false;
+            $("#userBtn").prop("disabled",true);
+            $("#userID").removeClass("is-valid");
+            $("#userID").addClass("is-invalid");
+        }
+    });
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//이름 길이 체크. 2자~20자까지
+	$("#userName").keyup(function(){
+        var inputLen = $("#userName").val().length;
+        var chkBlank = /\s/g;
+        var chkResult = chkBlank.test( $("#userName").val() );
+        
+        //길이에 맞지 않거나 공백이 포함되어 있는 경우
+        if((inputLen < 2 || inputLen > 20) || chkResult ){            
+            nameOk = false;            
+            $("#userBtn").prop("disabled",true);
+ 			$("#userName").removeClass("is-valid");
+            $("#userName").addClass("is-invalid");
+            
+        }else{            
+            nameOk = true;
+            $("#userName").removeClass("is-invalid");
+			$("#userName").addClass("is-valid");
+			
+            isOk = allOk(emailOk, pw1Ok, pw2Ok, nameOk, agreeOk);
+            if( isOk == true ){
+                $("#userBtn").prop("disabled",false);
+                
+            }            
+           
+        }
+    });
+	
+	//PW 길이 체크
+    $("#userPassword").keyup(function(){
+        if( $("#userPassword").val().length < 10 ){
+            pw1Ok = false;
+            $("#userBtn").prop("disabled",true);
+            $("#userPassword").removeClass("is-valid");
+            $("#userPassword").addClass("is-invalid");
+        }else{
+            pw1Ok = true;
+            $("#userPassword").removeClass("is-invalid");
+			$("#userPassword").addClass("is-valid");     
+			    
+            isOk = allOk(emailOk, pw1Ok, pw2Ok, nameOk, agreeOk);
+            if( isOk == true ){
+                $("#userBtn").prop("disabled",false);
+                
+            }
+        }
+    });
+    
+    //PW 확인 체크
+    $("#checkPass").keyup(function(){
+        var pw1 = $("#userPassword").val();
+        var pw2 = $("#checkPass").val();
+        if( pw1 == pw2 ){
+            pw2Ok = true;
+ 			$("#checkPass").removeClass("is-invalid");
+			$("#checkPass").addClass("is-valid");
+            isOk = allOk(emailOk, pw1Ok, pw2Ok, nameOk, agreeOk);
+            if( isOk == true ){
+                $("#userBtn").prop("disabled",false);            }
+        }else{
+            pw2Ok = false;
+            $("#checkPass").removeClass("is-valid");
+            $("#checkPass").addClass("is-invalid");
+            $("#userBtn").prop("disabled",true);
+        }
+    });
+	
+	
+	$("#agreeRegister").check(function(){
+		
+	
+	});
+	
+	
+	
+});
+
+
+function allOk( ok1, ok2, ok3, ok4, ok5 ){
+	if( ok1 && ok2 && ok3 && ok4 && ok5 ){
+        return true;
+	} else {
+        return false;
+    }
+}
+
+
+function userRegister(){
+	var userRegister = $("form[name=userRegister]").serialize();
+	
+	$.ajax({    	
+		url: "/user/userRegister",
+		data: userRegister,
+		enctype: 'multipart/form-data',
+		dataType: "json",
+		error: function(xhr, status, error){
+                alert(error);
+		},
+		success : function(json){
+                alert(json)
+            },
+        });
+}
+
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         

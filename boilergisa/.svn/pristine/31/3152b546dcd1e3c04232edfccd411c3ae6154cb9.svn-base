@@ -1,0 +1,252 @@
+textarea{
+font-size: 12px;
+}
+h4{
+width:100%;
+font-size: 14px;
+font-weight: bold;
+}
+select { 
+border-radius:0;
+vertical-align: middle;
+text-align-last: center;
+text-align: center;
+-webkit-appearance:none; 
+-moz-appearance:none; 
+appearance:none;
+}
+
+.uploadPhotos{
+position:relative;
+cursor: pointer;
+padding-bottom:16px;
+}
+.uploadContent{
+width:100%;
+height:240px;
+background: #e2e2e2;
+}
+.uploadContent input[type=file]{
+position:absolute;
+top:0;
+display:block;
+width:100%;
+opacity:0;
+outline:none;
+}
+.uploadContent .uploadContext{
+text-align:center;
+color: #8e8e8e;
+padding-top: 20px;	
+}
+.addPhotos{
+width: 100px;
+height: 30px;
+display: flex;
+right:25px;
+bottom:121px;
+font-size: 13px;
+color: #ffffff;
+align-items: center;
+background-color: #33B8FF; 
+border-radius: 5px;
+position:absolute;
+z-index:99;
+cursor:pointer;
+}
+.addPhotos img{
+width: 30px;
+height: 30px;
+padding: 5%;
+align-self: center;
+}
+.slider-nav{
+width:100%;
+height:74px;
+display:flex;
+bottom:0;
+padding-top: 8px;
+}
+.slider-nav > li{
+width:25%;
+background: #e2e2e2;
+margin:0 1px;
+}
+.slider-nav  li img{
+width:100%;
+height:100%;
+}
+.addFiles{
+width:100%;
+height:314px;
+top:0;
+position:absolute;
+}
+.addSlider{
+width:100%;
+height:240px;
+}
+.addSlider ul li{
+width:100%;
+height:100%;
+background-size: cover;
+background-position: center;
+}
+.addSlider ul li img{
+width:100%;
+height:100%;
+}
+.addSlider-nav{
+width:100%;
+height:70px;
+display:flex;
+bottom:0;
+padding-top:4px;
+position:absolute;
+}
+.addSlider-nav li{
+width:25%;
+margin:0 1px;
+}
+.addSlider-nav li img{
+width:100%;
+height:100%;
+}
+.inputInfo{
+padding:16px;
+padding-bottom: 70px;
+}
+.form-control{
+font-size:13px;
+}
+.infoRecord{
+padding-top:10px;
+display:flex;
+flex-direction: column;
+}
+.requestNbr{
+width:100%;
+display:flex;
+flex-direction:row;
+}
+.requestNbr p{
+font-size:14px;
+font-weight:bold;
+}
+.requestNbr span{
+padding:0 6px;
+color:#33B8FF;
+}
+.installCondition{
+width:100%;
+display:flex;
+padding-bottom: 6px;
+}
+.installCondition p{
+font-size:14px;
+font-weight:bold;
+padding:6px 8px 4px 0;
+}
+.installCondition .installEquipment{
+width: 25%;
+padding:0 4px;
+text-align:center;
+}
+.InfoInstalled{
+width: 100%;
+display: flex;
+}
+.InfoInstalled .installedFuel{
+width: 24%;
+padding-right:1%;
+text-align:center;
+}
+.InfoInstalled .installedBrand{
+width: 27%;
+padding-right:1%;
+text-align:center;
+}
+.InfoInstalled .installedMethod{
+width: 23%;
+padding-right:1%;
+text-align:center;
+}
+.InfoInstalled .installedSize{
+width: 23%;
+text-align:center;
+}
+.findBtn input{
+margin-top: 8px;
+}
+.findBtn button{
+padding: 8px;
+font-size:12px;
+border:1px solid #8f8f8f;
+border-radius: 5%;
+background: #e9e9e9;
+}
+#layer{
+display: none;
+position: fixed;
+overflow: hidden;
+transition: 0.4s;
+z-index: 999;
+-webkit-overflow-scrolling: touch;
+}
+#btnCloseLayer{
+cursor: pointer;
+position: absolute;
+width: 100%;
+height: 50px;
+z-index:1;
+bottom: 0;
+padding: 0;
+margin: 0;
+}
+#requestInstall{
+width: 100%;
+height: 60px;
+bottom: 0;
+padding: 0;
+margin: 0;
+position :fixed;
+font-size: 16px;
+color: #ffffff;
+font-weight: bold;
+background-color: rgba(54, 185, 255, 0.83);
+z-index: 9;
+border: none;
+}
+#requestInstall:disabled{
+background:#d3d3d3;
+}
+.recordUpdate{
+width:100%;
+display: flex;
+padding: 16px 0px;
+color:#ffffff;
+}
+.recordUpdate .recordModify{
+width: 50%;
+height: 40px;
+padding: 0px;
+margin: 5px;
+border: none;
+outline: none;
+background-color: rgb(51, 184, 255);
+}
+.recordUpdate .recordModify:hover{
+background-color: rgb(0, 167, 255);	
+}
+.recordUpdate .recordDel{
+width: 50%;
+height: 40px;
+padding: 0px;
+margin: 5px;
+border: none;
+outline: none;
+background-color: rgba(160, 166, 170, 0.83);
+}
+.recordUpdate .recordDel:hover{
+background-color: rgba(130, 134, 137, 0.83);
+}

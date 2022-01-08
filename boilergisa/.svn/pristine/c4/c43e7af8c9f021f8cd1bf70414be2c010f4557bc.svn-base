@@ -1,0 +1,59 @@
+package com.my.boilergisa.service;
+
+import java.util.Date;
+
+import javax.inject.Inject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.my.boilergisa.dao.UserTbMapper;
+import com.my.boilergisa.dto.UserVO;
+
+@Service
+public class UserServiceImpl implements UserService {
+	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	@Autowired UserTbMapper userTbMapper;	
+
+	//id 체크
+	public int userIdCheck(String userID) throws Exception{
+		return userTbMapper.userIdCheck(userID);
+	};
+
+	/*
+	//회원가입처리
+	public void register(UserVO userVO) throws Exception{
+		asNoticeTbMapper.userRegister(userVO);
+	}
+	//로그인
+	
+	@Override
+	public UserVO userLogin(LoginDTO loginDTO) throws Exception{
+		return asNoticeTbMapper.userLogin(loginDTO);
+	}
+	
+	@Override
+	public UserVO updateLoginDate(String userID) throws Exception{
+		return asNoticeTbMapper.updateLoginDate(userID);
+	}
+	
+	@Override
+	public UserVO userInfo(UserVO userVO)throws Exception{
+		return asNoticeTbMapper.userInfo(userVO);
+	}
+	
+	
+	@Override
+	public void userKeepLogin(String userID, String sessionID, Date sessionLimit)throws Exception {
+		asNoticeTbMapper.userKeepLogin(userID, sessionID, sessionLimit);
+	}
+
+	 @Override
+	 public UserVO checkLoginBefore(String value) throws Exception {
+		 return asNoticeTbMapper.checkUserWithSessionKey(value);
+	}
+*/
+}

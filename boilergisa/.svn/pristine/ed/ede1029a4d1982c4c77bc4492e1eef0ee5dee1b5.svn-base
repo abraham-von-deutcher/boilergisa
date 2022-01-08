@@ -1,0 +1,12 @@
+package com.my.boilergisa.dto;
+
+import lombok.Data;
+
+@Data
+public class EngnrFileVO {
+	String engnrNo;
+	String originalName;
+	String thumbnailName;
+	Long fileSize;
+	
+}

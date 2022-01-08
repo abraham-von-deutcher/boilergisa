@@ -1,0 +1,54 @@
+# 이곳이 프로젝트 설정하는 곳이에요 레거시에서는 글로벌 프로퍼티스 파일에다가 보통 하는데 부트는 여기다가 세팅해요
+
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 10
+    driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    
+##### DB접속정보가 여기에 들어가면 대요 as_notice_tb테이블 없으니깐 매퍼하고 서비스하고 나중에 지워야겠죠?
+    url: jdbc:log4jdbc:mysql://localhost:3306/BG?serverTimezone=UTC
+    username: root
+    password: Wkd78458562!
+
+
+    sql-script-encoding: UTF-8
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  
+  thymeleaf:
+    cache: false
+  mvc:
+    static-path-pattern: /static/**
+     
+  resources: 
+    static-locations: classpath:/static/
+    add-mappings: true
+
+server:
+  port : 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+    session:
+      timeout: 40000h
+  error:
+    path: '/error'
+    include-exception: true
+    include-stacktrace: always
+    whitelabel.enabled: true 
+     
+logging:
+  level:
+    web: info
+    root: info
+    ms.infotech.erp: debug
+
+banner:
+  location: banner.txt
+  

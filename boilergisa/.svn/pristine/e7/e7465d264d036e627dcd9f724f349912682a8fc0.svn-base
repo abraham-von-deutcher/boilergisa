@@ -1,0 +1,122 @@
+function recommandSpace(){
+	 $("#spaceHouse").keyup(function(){
+	     var spacevalue = $('#spaceHouse').val();
+	     if (spacevalue <= 0 )  {
+	         $('.resultSpace').val("평형를 입력하시면 적합한 용량의 보일러를 추천해드립니다.").css('color','#939393')} 
+	     else if (1 <= spacevalue && spacevalue < 15) {
+	         $('.resultSpace').val("* 13H~15H(칼로리)보일러를 권장합니다.").css('color','#FF0000')} 
+	     else if (15 <= spacevalue && spacevalue < 24) {
+	         $('.resultSpace').val("* 16H~18H(칼로리)보일러를 권장합니다.").css('color','#FF0000')} 
+	     else if (24<= spacevalue && spacevalue < 35) {
+	         $('.resultSpace').val("* 19H~24H(칼로리)보일러를 권장합니다.").css('color','#FF0000')} 
+	     else if (35<= spacevalue && spacevalue <= 40) {
+	         $('.resultSpace').val("* 25H~27H(칼로리)보일러를 권장합니다.").css('color','#FF0000')}else if (41<= spacevalue && spacevalue) {
+	         $('.resultSpace').val("* 계량기등급을 확인해야 합니다.").css('color','#FF0000')}
+	 })
+}
+
+function checkAgree(){
+	if($("#agreeBox").is(":checked") == false){
+		$('#checkMessage').html('이용약관에 동의해주세요.');
+		$("#requestInstall").attr("disabled", true);
+	}else{
+		$("#requestInstall").attr("disabled",false);
+	}		
+}
+ function requestInputCheck(){
+	if($('#files').val() == ''){
+		$('#checkMessage').html('사진을 업로드 해주세요.');  
+	    $("#checkModal").modal('show');
+	    $("#files").focus();			    
+	} else if($('#explainPhotos').val() == ''){
+		$('#checkMessage').html('사진설명 작성해주세요.');  
+	    $("#checkModal").modal('show');
+	    $("#explainPhotos").focus();			    
+	} else if($('#typeHouse').val() == ''){
+		$('#checkMessage').html('거주지 유형을 선택해주세요.');  
+	    $("#checkModal").modal('show');
+	    $("#typeHouse").focus();			    
+	} else if($('#spaceHouse').val() == ''){
+		$('#checkMessage').html('평형을 입력해주세요.');  
+	    $("#checkModal").modal('show');
+	    $("#spaceHouse").focus();			    
+	} else if($('#boLocation').val() == ''){
+		$('#checkMessage').html('보일러위치 선택해주세요.');  
+	    $("#checkModal").modal('show');
+	    $("#boLocation").focus();			    
+	} else if($('#boKinds').val() == ''){
+		$('#checkMessage').html('보일러종류 선택해주세요.');  
+	    $("#checkModal").modal('show');
+	    $("#boKinds").focus();			    
+	} else if($('#fuel').val() == ''){
+		$('#checkMessage').html('연료를 선택해주세요.');  
+		    $("#checkModal").modal('show');
+		    $("#fuel").focus();			    
+		} else if($('#brand').val() == ''){
+			$('#checkMessage').html('선호 브랜드를 적어도 한개를 선택해주세요.');  
+		    $("#checkModal").modal('show');
+		    $("#brand").focus();			    
+		} else if($('#addr').val() == ''){
+			$('#checkMessage').html('주소를 작성해주세요.');  
+		    $("#checkModal").modal('show');
+		    $("#addr").focus();			    
+		}else if($('#detailAddress').val() == ''){
+			$('#checkMessage').html('세부주소를 작성해주세요.');  
+		    $("#checkModal").modal('show');
+		    $("#addr").focus();			    
+		}else if($('#pNumber').val() == ''){
+			$('#checkMessage').html('전화번호를 작성해주세요.');  
+		    $("#checkModal").modal('show');
+		    $("#pNumber").focus();			    
+		}else{
+			$('#checkUploadMessage').html('업로드 하시겠습니까?');  
+		    $("#checkUpload").modal('show');
+
+		    var modalConfirm = function(callback){
+		    	$("#modal-btn-yes").on("click", function(){
+		    		callback(true);
+		    		$("#checkUpload").modal('hide');
+		    	});		  
+		    	$("#modal-btn-no").on("click", function(){
+		    		callback(false);
+		    		$("#checkUpload").modal('hide');
+		    	});
+		    };
+
+		    modalConfirm(function(confirm){
+		    	if(confirm){
+		    		$('#reqUpload').submit();
+		    	}else{		    
+		    	}
+		    });
+	};
+}
+ 
+ 
+ $(document).ready(function(){
+	var galleryThumbs = new Swiper('.addSlider-nav', {
+		slidesPerView: 4,
+		freeMode: true,
+		watchSlidesVisibility: true,
+		watchSlidesProgress: true,
+	});
+	var galleryTop = new Swiper('.addSlider', {
+		thumbs: {
+			swiper: galleryThumbs
+		}
+	});
+	
+	// 게시글 저장 버튼 클릭 이벤트 처리
+    $("#writeForm").submit(function (event) {
+        event.preventDefault();
+        var that = $(this);
+        filesSubmit(that);
+    });
+    // 파일 삭제 버튼 클릭 이벤트
+    $(document).on("click", ".delBtn", function (event) {
+        event.preventDefault();
+        var that = $(this);
+        deleteFileWrtPage(that);
+    });
+
+})

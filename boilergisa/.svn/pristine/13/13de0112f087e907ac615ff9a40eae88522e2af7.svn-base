@@ -1,0 +1,27 @@
+package com.my.boilergisa.service;
+
+import java.util.Date;
+
+import com.my.boilergisa.dto.LoginDTO;
+import com.my.boilergisa.dto.UserVO;
+
+public interface UserService {
+	
+	public int userIdCheck(UserVO userVO) throws Exception;
+	/*
+	//회원가입처리
+	public void userRegister(UserVO userVO) throws Exception;
+	
+	
+	
+	public UserVO userLogin(LoginDTO loginDTO) throws Exception;
+	
+	public UserVO updateLoginDate(String userID)throws Exception;
+	
+	public UserVO userInfo(UserVO userVO)throws Exception;
+	
+	public void userKeepLogin(String userID, String sessionID, Date sessionLimit)throws Exception;
+	
+	public UserVO checkLoginBefore(String value) throws Exception;
+	*/	
+}

@@ -1,0 +1,37 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <title>로그인 확인</title>
+</head>
+<body>
+    <script>
+	    $('#checkMessage').html('로그아웃 되었습니다.'); 
+		$("#checkModal").modal('show');
+		self.location = "/";
+    </script>
+    <div class="modal fade" id="checkModal" tabindex="-1" role="dialog" aria-hidden="true">
+	 <div class="vertical-alignment-helper">
+	 	<div class="modal-dialog vertical-align-center">
+	 	  <div id="checkType" class="modal-content panel-info">
+			<div class="modal-header panel-heading">
+			<button type="button" class="close" data-dismiss="modal">
+				<span aria-hidden="true">&times</span>
+				<span class="sr-only">Close</span>
+			</button>
+				<h4 class="modal-title">
+					확인메시지
+				</h4>
+			</div> 	
+	 		<div id="checkMessage" class="modal-body">
+	 		</div>
+	 	<div class="modal-footer">
+	 		 <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+	 	</div>
+	 	</div>
+	 </div>
+	 </div>
+	 </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="user.UserDTO" %>
+<%@ page import="user.UserDAO" %>
+<%@ page import="engnr.EngnrDTO" %>
+<%@ page import="engnr.EngnrDAO" %>
+<%@ page import="record.RecordDTO" %>
+<%@ page import="record.RecordDAO" %>
+
+
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Arrays" %>
+<% request.setCharacterEncoding("utf-8"); %>
+<% response.setContentType("text/html; charset=utf-8"); %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<%
+		String userID = null;
+		if (session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+		if (userID == null){
+			session.setAttribute("messageType", "오류메시지");
+			session.setAttribute("messageContent", "현재 로그인이 되어 있지 않습니다.");
+			response.sendRedirect("index.jsp");
+			return;
+		}
+		String engnrID = null;
+		if (session.getAttribute("engnrID") != null) {
+			engnrID = (String) session.getAttribute("engnrID");
+		}
+		if (engnrID != null){
+			session.setAttribute("messageType", "오류메시지");
+			session.setAttribute("messageContent", "현재 로그인된 상태입니다.");
+			response.sendRedirect("engnrHome.jsp");
+			return;
+		}
+
+		UserDTO user = new UserDAO().getUser(userID);
+		String selectedAddr = user.getSetAddress();
+		ArrayList<EngnrDTO> engnrList = new EngnrDAO().getEngnrList(selectedAddr);
+	%>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/customer/searchEngnr.css">
+<link rel="stylesheet" href="css/bgs.css">
+
+<title>전문가 검색하기</title>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<style>
+
+</style>
+</head>
+
+<body>	
+<header id ="bgHeader">
+	<div class="backHeader">
+		<img src="img/arrow-back.png" onclick="location.href='userMain.jsp'">
+	</div>
+	<div class="centerHeader"><h3>전문가 검색하기</h3></div>
+    <div class="nextHeader"></div>
+</header>
+<div class="main">   
+	<div class="findInner">
+		<button class="findBtn" onclick="location.href='searchRegion.jsp'">
+			<img src="img/bgs_search.png">
+			<p class="resultRegion"><%= selectedAddr %></p>
+		</button>
+		<p class="statusAddr">* <span class="resultRegion"><%= selectedAddr %></span> 시공 가능 업체</p>
+	</div>
+	<ul id="engnrList">
+      <%
+      	for(int i =0; i < engnrList.size(); i++){
+	  		EngnrDTO engnr = engnrList.get(i);
+	  		String getEngnrID = engnr.getEngnrID();
+	  		double aveRating = engnr.getEngnrRating();
+			aveRating = Math.round(aveRating * 100) / 100.0;
+	  		String engnrProfile = new EngnrDAO().getProfile(getEngnrID);
+	  		int count = new RecordDAO().count(getEngnrID);
+	  %>
+     	<li onclick="location.href='engnrInfo.jsp?toID=<%= engnr.getEngnrID() %>'">
+			<div class="info-agencies">
+		      <img src="<%= engnrProfile %>">
+		     <div class="details-agencies">
+				<h4><%= engnr.getEngnrName() %></h4>
+				<p>주소 : <%= engnr.getEngnrAddress1()%> <%= engnr.getEngnrAddress2()%></p>
+				<p>번호 :<%= engnr.getEngnrNumber()%></p>
+				<p>이메일 : <%= engnr.getEngnrID()%> </p>
+				<p>평점<span><%= aveRating %></span>점  / 설치사례<span><%= count %></span>건</p>				
+		      </div>
+		    </div>  
+		  </li>
+	<%
+		}
+    %>
+      </ul>
+     </div>
+
+</body>
+</html>

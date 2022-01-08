@@ -1,0 +1,181 @@
+.commentAndHit{
+width:100%;
+display:inline-block;
+}
+.commentAndHit p{
+float:right;
+font-size:13px;
+padding-right: 8px;
+}
+.rating {
+height:25px;
+display: flex;
+flex-direction: row-reverse;
+justify-content: center;
+padding:0;
+margin:0;
+}
+.rating>input {
+display: none
+}
+.rating>p {
+padding:3px;
+}
+.rating>label {
+position: relative;
+width: 1em;
+font-size: 17px;
+color: #FF9800;
+cursor: pointer
+}
+.rating>label::before {
+content: "\2605";
+position: absolute;
+opacity: 0
+}
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+opacity: 1 !important
+}
+.rating>input:checked~label:before {
+opacity: 1
+}
+.rating:hover>input:checked~label:before {
+opacity: 0.4
+}
+.comment{
+width:100%;
+display:inline-block;
+}
+.comment .recordRating{
+font-size: 16px;
+}
+.comment .totalRating{
+font-size: 17px;
+color:#FF0000;
+font-weight:bold;
+}
+.comment p{
+text-align:center;
+}
+.commentForm{
+width:100%;
+display:flex;
+flex-direction:row;
+padding-bottom:16px;
+border-bottom:1px solid #000000;
+}
+.comment .commentList li{
+width:100%;
+display:flex;
+flex-direction:column;
+border-bottom:0.5px solid #727272;
+}
+.comment .commentList li .commentListBox{
+display:flex;
+flex-direction:row;
+}
+.reCommentList li{
+width:100%;
+display:flex;
+flex-direction:column;
+}
+.reCommentList li .commentListBox{
+display:flex;
+flex-direction:row;
+padding-left:24px;
+}
+.commenterInfo{
+min-width: 70px;
+text-align:center;
+margin:5px;
+align-items: center;
+align-self: center
+}
+.commenterInfo img{
+width:50px;
+border-radius:50%;
+height:50px;
+}
+.commenterInfo p{
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.inputComment{
+width:100%;
+padding-bottom:4px;
+}
+
+.inputComment .commentText{
+width:100%;
+height:53px;
+padding: 6px;
+font-size:11px;
+word-break:break-all;
+}
+.deleted{
+color:#808080;
+}
+.inputComment .form-control{
+width:100%;
+height:53px;
+padding:4px;
+margin-top:8px;
+font-size:11px;
+}
+.inputComment .recomntBtn{
+height:35px;
+float:right;
+}
+.recomntBtn button{
+height:25px;
+align-items: center;
+justify-content: center;
+margin:5px;
+background-color:#d4d4d4;
+border:none;
+border-radius:10%;
+float:right;
+display:flex;
+flex-direction: row;
+color:#5a5a5a;
+}
+.starOutput{
+font-size: 17px;
+color: #FF9800;
+}
+.recomntBtn .delete{
+color:#FF0000;
+}
+.recomntBtn .comntUpload{
+background-color:#FF9800;
+color:#ffffff;
+}
+.hide{
+opacity:0;
+}
+.comntCount{
+width:100%;
+height:50px;
+}
+.comntCount p{
+font-size:17px;
+text-align:left;
+padding:8px;
+}
+.comntCount span{
+color:#33B8FF;
+padding: 0px 8px;
+}
+.commentNul{
+height:100px;
+background:#f1f1f1;
+}
+.commentNul p{
+text-align:center;
+font-size:14px;
+margin: auto;
+color: #8d8d8d;
+}

@@ -1,0 +1,27 @@
+package com.my.boilergisa.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.my.boilergisa.dto.EngnrVO;
+
+@Mapper
+public interface EngnrTbMapper {
+	
+	
+	List<EngnrVO> selectEngnrList(String setAddress) throws Exception;
+	
+	int engnrLogin(Map<String, Object> input) throws Exception;
+	
+	EngnrVO getEngnrInfo(String engnrID) throws Exception;
+	
+	int updateEngnrInfo(Map<String, Object> resultMap)throws Exception;
+	
+	int engnrKeepLogin(Map<String, Object> resultMap)throws Exception;
+		
+	int updateLoginDate(String engnrID)throws Exception;
+	
+	String checkEngnrWithSessionKey(String sessionID) throws Exception;
+}

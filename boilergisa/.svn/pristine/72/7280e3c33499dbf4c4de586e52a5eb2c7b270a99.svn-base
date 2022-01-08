@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/basic">
+	<th:block layout:fragment="title">
+		<title>회원가입 페이지</title>
+	</th:block>
+	<th:block layout:fragment="add-css"><link rel="stylesheet" th:href="@{/static/css/login.css}" /></th:block>
+
+	<th:block layout:fragment="backHeader"><img src="/static/img/arrow-back.png" onclick="history.back();"></th:block>
+	<th:block layout:fragment="centerHeader"><h6>회원가입</h6></th:block>
+
+<th:block layout:fragment="content">
+	<div class="mainLogin">
+		<div class="linkEngnr" onclick="location.href='/engnr/engnrLogin'">엔지니어(사업자)시라면?</div>
+		
+	<form id ="userRegister" name="userRegister" th:action="@{/user/userRegister}" th:object="${user}" method="post" onsubmit="return userRegister(this)">
+	
+		<div class="form-group row-vh d-flex" style="width:100%;">
+			<input type="email" class="form-control" placeholder="이메일 주소를 입력해주세요" id="userID" name="userID" maxlength="50"/>
+			<button class="userIdCheck" onclick="userIdCheck();" style="width:100px; font-size:0.8em; margin-left: 4px; padding:0px;">중복체크</button>
+		</div>		
+		<div class="form-group">
+		  	<input type="text" class="form-control" placeholder="이름을 입력해주세요" id="userName" name="userName" maxlength="20" />
+		</div>
+		<div class="form-group">
+		  	<input type="password" onkeyup ="passwordCheckFunction();" class="form-control" placeholder="비밀번호를 입력해주세요" id="userPassword" name="userPassword" maxlength="50">
+		</div>	  
+		<div class="form-group">
+			<input type="password" onkeyup ="passwordCheckFunction();" class="form-control" placeholder="비밀번호 확인합니다" id="checkPass" maxlength="50">
+			<span id="passwordCheckMessage" display:none></span>
+		</div>
+		<input type="hidden" value="서울시 강남구" name="setAddress">
+		<div class="form-group">
+			<label for="agreeRegister"><input type="checkbox" name="agreeRegister" id="agreeRegister"/><span>약관동의</span></label>
+		</div>
+	</form>
+	<button type="button" id="userBtn" value="회원가입" onclick="userRegCheck();">회원가입</button>
+	</div>
+</th:block>
+<th:block layout:fragment="script">
+	<script th:src="@{/static/script/loginCheck.js}"></script>
+</th:block>
+</body>
+</html>

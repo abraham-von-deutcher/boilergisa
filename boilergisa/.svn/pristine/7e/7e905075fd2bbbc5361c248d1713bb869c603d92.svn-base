@@ -1,0 +1,33 @@
+package com.my.boilergisa.controller;
+
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import lombok.extern.java.Log;
+
+@Controller
+@Log
+
+public class EngnrLoginController {
+	
+	//@Autowired EngnrService engnrService;	
+	
+	//로그인 페이지
+	@GetMapping(value = "/engnr/engnrLogin")
+	 public ModelAndView userLoginPage(Model model) {
+		log.info("엔지니어 로그인페이지 이동");
+		ModelAndView mv = new ModelAndView("/engnr/engnrLogin");
+		//mv.addObject("title", "승진쓰프로젝트");
+		return mv;
+		
+	}
+	
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,73 @@
+package com.my.boilergisa.controller;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.my.boilergisa.dto.UserVO;
+import com.my.boilergisa.service.UserService;
+
+import lombok.extern.java.Log;
+
+@Controller
+@Log
+public class UserRegisterController {
+	
+	@Autowired UserService userService;
+	
+	//회원가입 페이지
+	@GetMapping(value = "/user/userRegister")
+	public ModelAndView registerGET() throws Exception{
+		log.info("회원가입 페이지 이동");
+		ModelAndView mv = new ModelAndView("/user/userRegister");
+		//mv.addObject("title", "승진쓰프로젝트");
+		return mv;
+	}
+	@PostMapping(value="/user/userIdCheck")
+	public int userIdCheck(UserVO userVO) throws Exception{
+		 int count = 0;
+		 count = userService.userIdCheck(userVO);
+		 
+		 return count;
+	}
+	/*
+	
+	
+	
+	
+	@RequestMapping(value ="test", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Map<String, Object> test(@RequestBody Map<String, Object> input) throws Exception{
+		Map<String, Object> output = new HashMap<String, Object>();
+		System.out.println(input.get("text").toString());
+		output.put("returnText", "hi!");
+		Thread.sleep(3000);
+		return output;
+		//여기서 리턴되는 JSON 문자열은 {"returnText":"hi!"} JSON은 20글자
+		//만약에 XML 방식이면 
+		//<returnText>
+		//	<value>hi<value>
+		//</returnText>
+		//이런식으로 전송되는데 뭐 대충 30글자 용량차이가 나죠
+		//전공이시니깐 아실테지만
+		//array에 push해서 하나씩 집어넣어서 전송하는 반면이 있는가 하면
+		//문자열로 ㅁㅁㅁ/ㅠㅠㅠ/ㅊㅊㅊ/ㄷㄷㄷ(얘를 스플릿(/) 하면 배열이 되죠?)이렇게 구분자로 문자열로 전송하는 방식이 있는데
+		//그건 그때마다 개발자가 선택해서 보내는거에요
+		
+	}
+	
+	//회원가입  작성
+	@RequestMapping(value = "/userRegister", method = RequestMethod.POST)
+	public String registerPOST(UserVO userVO, RedirectAttributes redirectAttributes) throws Exception{
+		logger.info("회원가입 처리");
+		String hashedPw = BCrypt.hashpw(userVO.getUserPassword(), BCrypt.gensalt());
+		userVO.setUserPassword(hashedPw);
+		userService.register(userVO);
+		redirectAttributes.addFlashAttribute("msg","Registered");
+		return "redirect:/user/userLogin";
+	}
+*/
+}

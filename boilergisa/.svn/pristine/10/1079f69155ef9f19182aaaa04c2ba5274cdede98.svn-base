@@ -1,0 +1,43 @@
+$(document).ready(function() {
+		
+		var custmr_cookie = $('#custmrCookie').is(':checked');	
+	
+       $('#custmrBtn').click(function(){
+	     
+		if($('#custmrID').val()==''){
+			$('#checkMessage').html('아이디를 입력해주세요.');
+			$("#checkModal").modal('show');
+		}else if($('#custmrPassword').val() == ""){
+			$('#checkMessage').html('비밀번호를 입력해주세요.');
+			$("#checkModal").modal('show');
+		}else{	
+	
+		var json = {custmrID : $('#custmrID').val(), custmrPassword : $('#custmrPassword').val(), custmrCookie : custmr_cookie}
+		console.log(custmr_cookie);
+		$.ajax({
+		type:'POST',
+		url: "/custmr/custmrLogin",
+		data:JSON.stringify(json),
+		contentType: "application/json; charset=UTF-8",
+		dataType: "json",
+		success : function(data){
+				if(data.result === "Success"){
+					$('#checkMessage').html('로그인 되었습니다.');  
+					$("#checkModal").modal('show');
+					
+					$(".btn",".overlay").click(function(){
+						location.href="/custmr/custmrMain";	
+					})
+					
+				}else{
+					$('#checkMessage').html('아이디 또는 비밀번호가 잘못되었습니다.');  
+					$("#checkModal").modal('show');
+				}
+		},
+        error: function(xhr, status, error){
+                alert(error);
+				},
+        	});
+		}
+	})
+})

@@ -1,0 +1,55 @@
+.mainLogin{
+margin-top: 50px;
+top: 100px;
+left: 0;
+right: 0;
+bottom: 0;
+}
+#passwordCheckMessage{
+	display:none;
+}
+.mainLogin button{
+width: 100%;
+color: #ffffff;
+border-radius: 5px;
+font-size: 1em;
+padding: 12px;
+margin: 0;
+border:0px;
+background: #33B8FF;
+}
+.mainLogin #userBtn:disabled{
+background-color:#d3d3d3;
+}
+#engnrBtn{	
+background: #FF9800;
+}
+.findPw{
+width:100%;
+}
+.findPw p{
+float:right;
+padding:8px;
+font-size:14px;
+font-weight:bolder;
+}
+.linkEngnr{
+font-size: 14px;
+padding-bottom: 10px;
+right:0;
+float:right;
+color:#FF9800;
+font-weight:bold;
+}
+.form-group label span{
+padding:0 6px;
+font-size: 14px;	
+}
+#autoLogin{
+margin-right:8px;
+}
+#passwordCheckMessage{
+font-weight: bold;
+font-size:12px;
+padding:8px 4px;
+}

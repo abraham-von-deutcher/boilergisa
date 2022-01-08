@@ -1,0 +1,92 @@
+function passwordCheckFunction(){
+	var userPassword = $('#userPassword').val();
+	var checkPass = $('#checkPass').val();
+	
+	if(userPassword != checkPass){
+		$('#passwordCheckMessage').html('비밀번호가 일치하지 않습니다.');
+		$('#passwordCheckMessage').css('color','#d92742');
+		$("#userBtn").attr("disabled", true);
+	}else{
+		$('#passwordCheckMessage').html('일치합니다.');
+		$('#passwordCheckMessage').css('color','#33B8FF');
+		$("#userBtn").attr("disabled",false);
+	}	 	
+}
+
+function userRegCheck(){
+	if($('#userID').val() == ''){
+		$('#checkMessage').html('아이디를 입력 해주세요.');  
+		$("#checkModal").modal('show');
+		$("#userID").focus();			    
+	} else if($('#userName').val() == ''){
+		$('#checkMessage').html('이름를 입력해주세요.');  
+		$("#checkModal").modal('show');
+		$("#userName").focus();
+	} else if($('#userPassword').val() == ''){
+		$('#checkMessage').html('비밀번호를 입력해주세요.');  
+	    $("#checkModal").modal('show');
+	    $("#userPassword").focus();
+	} else if($('#checkPass').val() == ''){
+		$('#checkMessage').html('비밀번호 확인해주세요.');  
+	    $("#checkModal").modal('show');
+	    $("#checkPass").focus();
+	} else if($('#agreeRegister').val() == ''){
+		$('#checkMessage').html('약관에 동의해주세요.');  
+	    $("#checkModal").modal('show');
+	    $("#checkPass").focus();
+	}else{
+		$("#userRegister").submit();
+	}
+}
+
+var msg = "${msg}";
+	if(msg == "Failure"){
+		$(function(){
+			$('#checkMessage').html('아이디와 비밀번호 확인해주세요.');  
+			$("#checkModal").modal('show');
+		});
+	}else if(msg == "Registered"){
+		$(function(){
+			$('#checkMessage').html('회원가입 완료했습니다.');  
+			$("#checkModal").modal('show');
+		})
+	}
+
+
+
+
+
+
+
+
+function userRegister(){
+	var userRegister = $("form[name=userRegister]").serialize();
+	
+	$.ajax({    	
+		url: "/user/userRegister",
+		data: userRegister,
+		enctype: 'multipart/form-data',
+		dataType: "json",
+		error: function(xhr, status, error){
+                alert(error);
+		},
+		success : function(json){
+                alert(json)
+            },
+        });
+}
+
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         

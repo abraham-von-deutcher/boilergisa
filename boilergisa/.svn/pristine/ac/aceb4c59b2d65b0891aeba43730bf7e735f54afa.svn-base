@@ -1,0 +1,15 @@
+package com.my.boilergisa.dto;
+
+import java.util.Date;
+import lombok.Data;
+
+@Data
+public class UserVO {
+	private String userID;
+	private String userName;
+	private String userPassword;
+	private String setAddress;
+	private String userProfile;
+	private Date userJoinDate;
+	private Date userLoginDate;
+}

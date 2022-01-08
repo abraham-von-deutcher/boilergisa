@@ -1,0 +1,50 @@
+.showProfil{
+width:100%;
+height:240px;
+outline:none;
+background: #efefef;
+position:relative;
+text-align:center;
+position:relative;
+}
+.showProfil .savedProfile{
+width:100%;
+height:100%;
+top:0;
+left:0;
+right:0;
+position:absolute;
+}
+.showProfil .changeProfile{
+width:100%;
+height:100%;
+top:0;
+left:0;
+right:0;
+position:absolute;
+z-index:10;
+}
+.Profil p{
+padding: 4px 16px;
+padding-bottom: 0;
+}
+.Profil input[type=file]{
+position:absolute;
+top:56px;
+left:0;
+right:0;
+display:block;
+width:100%;
+height:240px;
+font-size: 11px;
+cursor:pointer;
+z-index:99;
+opacity:0;
+}
+.uploadProfile{
+font-size: 11px;
+margin: 0 8px;
+padding:8px;
+border: 1px solid #757575;
+border-radius:8%;
+}

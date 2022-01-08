@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<body th:fragment="main-body">
+		<div class="fixed-navbar">
+			<div class="pull-left">
+				<h1 class="page-title">Boilergisa</h1>
+			</div>
+			
+			
+<<<<<<< .mine
+			<!--이렇게 수정하고 저장하면 왼쪽에 ㅇㅇㅇ꺽쇠가 생겨요 해당 파일이 커밋 대상이라는 뜻이에요
+||||||| .r3
+=======
+			<!--이렇게 수정하고 저장하면 왼쪽에 꺽쇠가 asdasd생겨요 해당 파일이 커밋 대상이라는 뜻이에요
+>>>>>>> .r4
+			-->
+			
+			
+			
+			
+		</div>
+		<!-- /.fixed-navbar -->
+
+		<div id="wrapper">
+			<div class="main-content">
+				<div class="row row-inline-block small-spacing">
+					<div class="col-xs-12">
+						<div class="box-content">
+							<div class="clearfix">
+								<h4 class="box-title pull-left"></h4>
+								<!-- /.box-title -->
+	
+								<th:block layout:fragment="search"></th:block>
+	
+							</div>
+							<!-- //.clearfix -->
+	
+							<th:block layout:fragment="content"></th:block>
+	
+							<th:block layout:fragment="paging"></th:block>
+						</div>
+						<!-- /.box-content -->
+						
+						<th:block layout:fragment="add-content"></th:block>
+
+					</div>
+					<!-- /.col-xs-12 -->
+				</div>
+				<!-- /.row row-inline-block small-spacing -->
+				<footer class="footer">
+					<ul class="list-inline">
+						<li>2021 © Boilergisa.</li>
+					</ul>
+				</footer>
+			</div>
+			<!-- /.main-content -->
+		</div>
+		<!-- /#wrapper -->
+
+		<script th:src="@{/static/scripts/jquery.min.js}"></script>
+		<script th:src="@{/static/plugin/bootstrap/bootstrap.min.js}"></script>
+
+		<script th:src="@{/static/scripts/main.js}"></script>
+		<script th:src="@{/static/scripts/common.js}"></script>
+
+		<th:block layout:fragment="script"></th:block>
+	</body>
+</html>

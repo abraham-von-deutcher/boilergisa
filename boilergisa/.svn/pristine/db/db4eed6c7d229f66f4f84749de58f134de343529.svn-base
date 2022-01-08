@@ -1,0 +1,10 @@
+package com.my.boilergisa.dto;
+
+import lombok.Data;
+
+@Data
+public class LoginDTO{
+	private String userID;
+	private String userPassword;
+	private boolean useCookie;
+}

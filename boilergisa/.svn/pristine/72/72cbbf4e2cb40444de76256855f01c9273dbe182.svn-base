@@ -1,0 +1,175 @@
+/*-------------------고객 페이지 네비게이션--------------------*/
+.wrapper-container{
+	margin-left:300px;
+}
+.main{
+	margin:0 16px;
+	margin-bottom: 63px;
+}
+.navbar-toggler{
+	display:none;
+}
+#closeSidebar{
+	display:none;
+}
+.navbar-collapse {
+	position:fixed;
+	top:0;
+	left: 0;
+	bottom:0;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+	width: 300px;
+	border:1px solid #efefef;
+	background-color:#ffffff;	
+}
+.sidebar-header{
+	position:fixed;
+	width:270px;
+	height:50px;
+	padding:10px;
+	border-bottom: 1px solid #efefef;
+}
+.sidebar-header h5{
+	text-align: center;
+}
+#closeSidebar{
+	position:absolute;
+	top:0;
+	left:0;
+}
+#custmrSetting{
+	position:absolute;
+	top:0;
+	right:0;
+}
+.sidebar-header img{
+	width:30px;
+	height:30px;
+	margin:10px;
+}
+.sidebar-header img:hover{
+	background: #eeeeee;
+}
+.infoCustmr{
+	margin-top:65px; 
+	height:180px;
+	background-color: #efefef;
+}
+.infoCustmr img{
+	width:95px;
+	height:95px;
+	padding:15px;
+	display:block;
+	margin:auto;
+}
+.infoCustmr h5{
+	text-align: center;
+}
+.infoCustmr h5 span{
+	font-weight: bolder;
+}
+.collapse ul p{
+	padding:15px;
+	margin:0;
+}
+.collapse ul li{
+	height:60px;
+	padding:20px;
+	font-weight: bolder;
+}
+
+@media (max-width: 768px) {
+	.navbar-toggler{
+		display:block;
+	}
+	#closeSidebar{
+		display:block;
+	}
+	.wrapper-container{
+		margin-left: 0px;
+	}
+	.navbar-collapse {
+		z-index: 999;
+	}
+    .navbar-collapse.collapsing {
+        left: -75%;
+        transition: height 0s ease;
+    }
+    .navbar-toggler.collapsed ~ .navbar-collapse {
+        transition: left 10ms ease-in-out;
+    }
+    .overlay{
+		display: none;
+		position: absolute;
+	    /* full screen */
+	    width: 100vw;
+	    height: 100vh;
+	    /* transparent black */
+	    background: rgba(0, 0, 0, 0.3);
+	    /* middle layer, i.e. appears below the sidebar */
+	    z-index: 998;
+	    opacity: 0;
+	    /* animate the transition */
+	    transition: all 0.5s ease-in-out;
+	}
+	.overlay.active{
+		display: block;
+		opacity: 1;
+	}
+}
+
+/*-------------------고객 페이지 메인헤더--------------------*/
+.leftHeader button{ 
+	border:none;
+}
+.leftHeader img{
+	width:30px;
+	height:20px;
+	margin:4px 0;
+}
+/*-------------------고객 페이지 컨덴츠--------------------*/
+
+.introBg{
+	padding-bottom:16px;
+}
+.introBg p{
+	margin-top: 5px;
+	font-size: 14px;
+	font-weight: bold;
+}
+.custmrTile{
+	color: #FF9800;
+}
+.serviceArea{
+	width: 100%;
+	height: 200px;
+	display: flex;
+	flex-direction: row;
+}
+.serviceArea p{
+	font-size: 10px;
+	padding-top:4px;
+}
+.col-xs-4{
+	text-align: center;
+	padding:15px;
+}
+.col-xs-4 .selectIcon{
+	width: 100%;
+	border-radius: 8px;
+	display: inline-block;
+}
+.col-xs-4 .selectIcon:hover{
+	background: #efefef;
+}
+.col-xs-4 img{
+	width:30px;
+	height:30px;
+	margin-top:10px;
+}
+
+
+
+

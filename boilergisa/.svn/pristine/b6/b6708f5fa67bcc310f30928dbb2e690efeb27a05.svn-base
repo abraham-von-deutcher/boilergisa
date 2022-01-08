@@ -1,0 +1,30 @@
+package com.my.boilergisa;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration 
+public class InterceptorConfigurations implements WebMvcConfigurer {
+	@Override  //인터셉터 등록
+	public void addInterceptors(InterceptorRegistry registry) {
+		
+		/////////////////////////////////// MOBILE/PC 구분 Interceptor 설정
+		/*
+		 * registry.addInterceptor(new MobileCheckInterceptor()) .addPathPatterns("/**")
+		 * .excludePathPatterns("/static/**") // TODO generator 추후 삭제
+		 * .excludePathPatterns("/generator") .excludePathPatterns("/generator/**");
+		 */
+		
+		
+		////////////////////////////////// 업체 로그인  Interceptor 설정
+//		registry.addInterceptor(new UserLoginInterceptor())
+//			.addPathPatterns("/**")
+//			.excludePathPatterns("/")
+//			.excludePathPatterns("/login")
+//			.excludePathPatterns("/static/**")
+			// TODO generator 추후 삭제
+//			.excludePathPatterns("/generator")
+//			.excludePathPatterns("/generator/**")
+	}
+}

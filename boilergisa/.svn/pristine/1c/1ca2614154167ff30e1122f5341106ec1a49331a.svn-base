@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.boilergisa.dao.EngnrFileTbMapper">
+
+	<sql id="fileColumns">
+		engnr_no,
+		original_name,
+		thumbnail_name,
+		file_size,
+		delete_yn,
+		insert_time,
+		delete_time
+	</sql>
+ 	
+ 	<insert id="insertFile" parameterType="list">
+		INSERT INTO engnrfiletb(
+			<include refid="fileColumns" />
+		)VALUES
+		<foreach collection="fileList" item="item" separator=",">
+		(
+			#{item.engnrNo}
+			,#{item.originalName}
+			,#{item.thumbnailName}
+			,#{item.fileSize}
+			,'N'
+			,NOW()
+			,NULL
+		)
+		</foreach>
+	</insert>
+	
+	<update id="updateFile" parameterType="list">
+ 		UPDATE engnrFileTb
+ 		SET engnr_no = #{engnrNo},
+ 			originalname = #{originalName},
+ 			thumbnailname = #{thumbnailName},
+ 			file_size = #{fileSize}
+ 		
+ 	</update>
+ 	
+	<select id="selectFileList" parameterType="com.my.boilergisa.dto.EngnrFileVO" resultType="com.my.boilergisa.dto.EngnrFileVO">
+		SELECT 
+			engnr_no,
+			originalname,
+			thumbnailname,
+			file_size
+		FROM engnrFileTb
+		<where>
+			<if test="fileIdx !=null and fileIdx !=''"><![CDATA[ and file_idx = #{fileIdx} ]]></if>
+		</where>
+	</select>
+    
+    
+</mapper>

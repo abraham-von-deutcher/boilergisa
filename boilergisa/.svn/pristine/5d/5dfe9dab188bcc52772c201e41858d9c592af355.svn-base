@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.boilergisa.dao.CustmrTbMapper">
+
+	<select id="custmrIdCheck" parameterType="com.my.boilergisa.dto.CustmrVO" resultType="Int">
+		SELECT count(*) 
+		FROM custmrTb
+		<where>
+			<if test="custmrID !=null and custmrID !=''"><![CDATA[ and custmr_id = #{custmrID} ]]></if>
+		</where>
+	</select>
+    
+    <insert id="custmrRegister" parameterType="com.my.boilergisa.dto.CustmrVO">
+    	INSERT INTO custmrTb(
+ 		<trim prefixOverrides=",">
+ 		<if test="custmrID !=null and custmrID !=''">  , custmr_id </if> 		
+ 		<if test="custmrName !=null and custmrName !=''"> , custmr_name </if>
+ 		<if test="custmrPassword !=null and custmrPassword !=''"> , custmr_pass </if>
+ 		</trim>
+ 		)
+ 		VALUES(
+ 		<trim prefixOverrides=",">
+ 		<if test="custmrID !=null and custmrID !=''"> , #{custmrID} </if> 		
+ 		<if test="custmrName !=null and custmrName !=''"> , #{custmrName} </if>
+ 		<if test="custmrPassword !=null and custmrPassword !=''"> , #{custmrPassword} </if>
+ 		</trim>
+ 		)
+ 	</insert>
+ 	
+ 	<select id="getCustmrInfo" parameterType="com.my.boilergisa.dto.CustmrVO" resultType="com.my.boilergisa.dto.CustmrVO">
+ 		SELECT 
+			custmr_id,
+			custmr_pass,
+			custmr_name,
+			custmr_profile
+		FROM custmrTb 
+		<where>
+			<if test="custmrID !=null and custmrID !=''"><![CDATA[ and custmr_id = #{custmrID} ]]></if>
+ 		</where>
+ 	</select>
+ 	
+ 	<select id="custmrLogin" parameterType="com.my.boilergisa.dto.CustmrVO" resultType="Int">
+ 		SELECT count(*) 
+		FROM custmrTb 
+		<where>
+			<if test="custmrID !=null and custmrID !=''"><![CDATA[ and custmr_id = #{custmrID} ]]></if>
+			<if test="custmrPassword !=null and custmrPassword !=''"><![CDATA[ and custmr_pass = #{custmrPassword} ]]></if>
+ 		</where>
+ 	</select> 	
+ 	
+ 	<update id="custmrKeepLogin">
+ 		UPDATE custmrTb
+ 		SET session_key = #{sessionID},
+ 			session_limit = #{sessionLimit}
+ 		<where>
+	 		<if test="custmrID !=null and custmrID !=''"><![CDATA[ and custmr_id = #{custmrID} ]]></if>
+ 		</where>
+ 	</update>
+ 	
+ 	<update id="updateLoginDate">
+ 		UPDATE custmrTb
+ 		SET custmr_loginDate = NOW()
+ 		<where>
+	 		<if test="custmrID !=null and custmrID !=''"><![CDATA[ and custmr_id = #{custmrID} ]]></if>
+ 		</where>
+ 	</update>
+ 	
+ 	<select id="checkCustmrWithSessionKey" parameterType="com.my.boilergisa.dto.CustmrVO" resultType="com.my.boilergisa.dto.CustmrVO">
+        SELECT *
+        FROM custmrTb
+        <where>
+	 		<if test="sessionID !=null and sessionID !=''"><![CDATA[ and session_key = #{sessionID} ]]></if>
+ 		</where>
+    </select>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+</mapper>

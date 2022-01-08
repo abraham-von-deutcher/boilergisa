@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.my.boilergisa.dao.EngnrFileTbMapper">
+ 	
+ 	<select id="engnrFileList" parameterType="com.my.boilergisa.dto.EngnrFileVO" resultType="com.my.boilergisa.dto.EngnrFileVO">
+		SELECT
+			file_idx
+			engnr_no,
+			original_name,
+			thumbnail_name,
+			file_size,
+			delete_yn,
+			insert_time,
+			delete_time
+		FROM
+			engnrFileTb
+		WHERE
+			engnr_no = #{engnrNo} order by file_idx DESC
+	</select>
+	
+ 	<insert id="insertFile" parameterType="com.my.boilergisa.dto.EngnrFileVO">
+		INSERT INTO engnrFileTb(
+			engnr_no,
+			original_name,
+			thumbnail_name,
+			file_size,
+			delete_yn,
+			insert_time,
+			delete_time
+		)VALUES(
+			#{engnrNo}
+			,#{originalName}
+			,#{thumbnailName}
+			,#{fileSize}
+			,'N'
+			,NOW()
+			,NULL
+		)
+	</insert>
+
+	<update id="deleteFile" parameterType="Long">
+		DELETE 
+		FROM engnrFileTb
+		WHERE
+			file_idx = #{fileIdx}
+	</update>
+	
+</mapper>

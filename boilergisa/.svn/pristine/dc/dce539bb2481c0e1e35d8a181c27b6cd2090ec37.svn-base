@@ -1,0 +1,41 @@
+package com.my.boilergisa.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.my.boilergisa.interceptor.CustmrAfterInterceptor;
+import com.my.boilergisa.interceptor.CustmrInterceptor;
+
+@Configuration 
+public class CustmrInterceptorConfig implements WebMvcConfigurer {
+	
+	@Override  //인터셉터 등록
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new CustmrInterceptor())
+        .addPathPatterns("/custmr/**")
+        .excludePathPatterns("/static/**");
+		
+		registry.addInterceptor(new CustmrAfterInterceptor())
+		.addPathPatterns("/custmr/custmrLogin", "/custmr/custmrRegister");
+		
+		
+		/////////////////////////////////// MOBILE/PC 구분 Interceptor 설정
+		/*
+		 * registry.addInterceptor(new MobileCheckInterceptor()) .addPathPatterns("/**")
+		 * .excludePathPatterns("/static/**") // TODO generator 추후 삭제
+		 * .excludePathPatterns("/generator") .excludePathPatterns("/generator/**");
+		 */
+		
+		
+		////////////////////////////////// 업체 로그인  Interceptor 설정
+//		registry.addInterceptor(new UserLoginInterceptor())
+//			.addPathPatterns("/**")
+//			.excludePathPatterns("/")
+//			.excludePathPatterns("/login")
+//			.excludePathPatterns("/static/**")
+			// TODO generator 추후 삭제
+//			.excludePathPatterns("/generator")
+//			.excludePathPatterns("/generator/**")
+	}
+}

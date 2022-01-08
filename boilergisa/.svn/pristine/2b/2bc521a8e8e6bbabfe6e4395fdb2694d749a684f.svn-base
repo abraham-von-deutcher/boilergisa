@@ -1,0 +1,76 @@
+//파일 업로드
+$('#profileChangeBtn').click(function(){
+	$('#file').click();
+})
+
+$('#file').on("change", function(e) {
+	
+    var reader = new FileReader();
+	reader.onload = function (e) {
+		var img = document.createElement("img");
+		img.setAttribute("src", e.target.result);
+		document.querySelector("div.preProfile").appendChild(img);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	reader.readAsDataURL( e.target.files[0]);
+	
+});
+
+//회원정보 수정 버튼
+$('#engnrUpdateBtn').click(function(){
+	
+	var formData = new FormData();
+
+	formData.append('file', $('#file')[0].files[0]);
+	formData.append('engnrNo', $('#engnrNo').val()),
+	formData.append('engnrID', $('#engnrID').val()),
+	formData.append('engnrName', $('#engnrName').val()),
+	formData.append('engnrAddress1', $('#engnrAddress1').val()),
+	formData.append('engnrAddress2', $('#engnrAddress2').val()),
+	formData.append('engnrNumber', $('#engnrNumber').val()),
+	formData.append('engnrIntro', $('#engnrIntro').val()),
+	formData.append('businessType', $('#businessType').val()),
+	formData.append('workTime1', $('#workTime1').val()),
+	formData.append('workTime2', $('#workTime2').val()),
+	formData.append('breakTime', $('#breakTime').val())
+	  		
+	$.ajax({
+	type:'POST',
+	url: "/engnr/engnrUpdate",
+	data: formData,
+	contentType: false,
+	processData: false,
+	enctype:'multipart/form-data',
+	success : function(data){
+			if(data.result === "Success"){
+				$('#checkMessage').html('회원님 정보가 수정되었습니다.');  
+				$("#checkModal").modal('show');
+				
+				$(".btn, .modal").click(function(){
+					location.href="/engnr/engnrMypage";	
+				})
+			}else if(data.result === "DBFailed"){
+				$('#checkMessage').html('데이터베이스 처리 과정에 문제가 발생하였습니다.');  
+				$("#checkModal").modal('show');
+			}else if(data.result === "SystemFailed"){
+				$('#checkMessage').html('시스템에 문제가 발생하였습니다.');  
+				$("#checkModal").modal('show');
+			}else{
+				$('#checkMessage').html('알수없는 오류가 발생했습니다.');  
+				$("#checkModal").modal('show');
+			}
+		},
+		error: function(xhr, status, error){
+			alert(error);
+		},
+	});
+})

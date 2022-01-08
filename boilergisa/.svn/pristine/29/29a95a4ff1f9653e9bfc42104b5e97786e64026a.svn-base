@@ -1,0 +1,22 @@
+package com.my.boilergisa.dao;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.my.boilergisa.dto.UserVO;
+
+@Mapper
+public interface UserTbMapper {
+	
+	int userIdCheck(String userID) throws Exception;
+	/*
+	int userRegister(UserVO userVO) throws Exception;
+	
+	int getUserInfo(LoginDTO loginDTO) throws Exception;
+	
+	int updateLoginDate(UserVO userVO)throws Exception;
+		
+	int userKeepLogin(UserVO userVO)throws Exception;
+	
+	int checkUserWithSessionKey(String value) throws Exception;
+	*/
+}

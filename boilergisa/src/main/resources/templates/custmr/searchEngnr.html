@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/basic">
+	<th:block layout:fragment="title">
+		<title>로그인 페이지</title>
+	</th:block>
+	<th:block layout:fragment="add-css"><link rel="stylesheet" th:href="@{/static/css/commons/login.css}" /></th:block>
+
+	<th:block layout:fragment="leftHeader"><img src="/static/img/commons/arrow-back.png" onclick="history.back();"></th:block>
+	<th:block layout:fragment="centerHeader"><h5>로그인</h5></th:block>
+	
+	
+	
+	
+<div class="main">   
+	<div class="findInner">
+		<button class="findBtn" onclick="location.href='searchRegion.jsp'">
+			<img src="img/bgs_search.png">
+			<p class="resultRegion"><%= selectedAddr %></p>
+		</button>
+		<p class="statusAddr">* <span class="resultRegion"><%= selectedAddr %></span> 시공 가능 업체</p>
+	</div>
+	<ul id="engnrList">
+      
+     	<li onclick="location.href=''">
+			<div class="info-agencies">
+		      <img src="<%= engnrProfile %>">
+		     <div class="details-agencies">
+				<h4><%= engnr.getEngnrName() %></h4>
+				<p>주소 : <%= engnr.getEngnrAddress1()%> <%= engnr.getEngnrAddress2()%></p>
+				<p>번호 :<%= engnr.getEngnrNumber()%></p>
+				<p>이메일 : <%= engnr.getEngnrID()%> </p>
+				<p>평점<span><%= aveRating %></span>점  / 설치사례<span><%= count %></span>건</p>				
+		      </div>
+		    </div>  
+		  </li>
+	      </ul>
+     </div>
+
+</body>
+</html>

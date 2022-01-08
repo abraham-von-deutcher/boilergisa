@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/basic">
+	<th:block layout:fragment="title">
+		<title>고객 메인페이지</title>
+	</th:block>
+	
+	<th:block layout:fragment="add-css"><link rel="stylesheet" th:href="@{/static/css/custmr/custmrMain.css}" /></th:block>
+	
+	<th:block layout:fragment="sidebar">
+		<nav class="collapse navbar-collapse collapse" id="navbarCollapse">
+		
+		
+			<div class="sidebar-header">
+				<img id="closeSidebar" src="/static/img/commons/arrow-back.png">
+				<h5>로그인 정보</h5>
+				<img id="custmrSetting" src="/static/img/commons/setting.png"  onclick="location.href='/custmr/custmrSetting'">
+			</div>
+			<div class="infoCustmr">
+				<img src=""/>
+				<h7 class="custmrName"></h7>
+			</div>
+			<ul>
+				<span class="">뢀동정보</span>
+				<li><a href="">내 견적서 정보</a></li>
+				<li><a href="">상담내역</a></li>
+				<li><a href="">가맹점 찾기</a></li>
+				<li><a href="">공지사항</a></li>
+				<li><a href="">입점문의</a></li>
+			</ul>
+		</nav>
+		<div class="overlay"></div>
+	</th:block>
+	<th:block layout:fragment="leftHeader">
+		<button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" >
+			<img src="/static/img/custmr/bgs_menu.png"/>
+		</button></th:block>
+	<th:block layout:fragment="centerHeader"><h5>보일러기사</h5></th:block>
+	<th:block layout:fragment="rightHeader">
+		<img src="/static/img/commons/bgs_search.png" class="bgs_search" onclick="location.href='/custmr/searchEngnr'">
+		<img src="/static/img/commons/bgs_noti_unfill.png" class="bgs_notice" onclick="location.href=''">
+	</th:block>
+
+
+
+<th:block layout:fragment="content">
+	<div class="introBg">
+		<p class ="custmrTile">안전해서 믿을 수 있는 보일러기사</p>
+		<p>보일러기사를 통해 쉽고,<br>안전하게 견적 받아보세요.</p>
+	</div>
+	
+	<div class="serviceArea">
+		<div class="col-xs-4">
+		    <div class="selectIcon" onclick="location.href='/custmr/requestBoiler'">
+		        <img src="/static/img/custmr/bgs_findegnr.png">
+		        <p>전문가 찾기</p>
+			</div>
+		</div>		
+		<div class="col-xs-4">
+		    <div class="selectIcon" onclick="location.href='/custmr/requestWaterHeater'">
+		       <img src="/static/img/custmr/bg_boiler_instl.png">
+		       <p>보일러 견적</p>
+			</div>
+		</div>		
+		<div class="col-xs-4">
+			<div class = "selectIcon" onclick="location.href='/custmr/searchEngnr'">
+		        <img src="/static/img/custmr/bgs_waterheater_instl.png">
+		        <p>온수기 견적</p>
+		    </div>
+		</div>
+	</div>
+	
+	<div class="infoAS">
+		
+		
+		
+		
+	</div>
+
+
+
+
+</th:block>	
+<th:block layout:fragment="script">
+	<script th:src="@{/static/script/custmr/custmrMain.js}"></script>
+</th:block>
+</html>

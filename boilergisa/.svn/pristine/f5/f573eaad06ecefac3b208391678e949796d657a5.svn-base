@@ -1,0 +1,136 @@
+input{
+font-size:11px;
+}
+.main input:focus{
+outline: none;
+box-shadow: none;
+border: 1px solid #FF9800;
+}
+.main textarea:focus{
+border: 1px solid #FF9800;
+}
+#passwordCheckMessage{
+display:none;
+color: #d92742;
+font-weight: bold;
+font-size:12px;
+padding:8px 4px;
+}
+#button_update{
+width: 100%;	
+background-color: rgba(54, 185, 255, 0.83);
+color: #ffffff;
+font-size: 1em;
+position: fixed;
+bottom: 0;
+right: 0;
+left: 0;
+padding: 16px 0;
+margin: 0;
+z-index:9;
+border:none;
+}
+.inputInfo{
+padding:0 16px;
+}
+.form-group{
+margin: 8px 0px;
+font-size:11px;
+}
+.form-group input{
+margin-bottom: 12px;
+}
+.form-group textarea{
+width:100%;
+height:110px;
+}
+
+.infoMyID{
+padding:0px 10px;
+padding-top:8px;
+font-weight:bold;
+margin:0px;
+}
+.findAddrs{
+width:100%;
+display:flex;
+flex-direction: row;
+}
+.findAddrs input{
+margin-left:8px;
+}
+.findAddrsBtn{
+width:25%;
+font-size: 11px;
+margin: 0;
+margin-bottom:4px;
+padding:8px;
+border: 1px solid #757575;
+border-radius:8%;
+}
+#btnCloseLayer{
+cursor: pointer;
+position: absolute;
+width: 100%;
+height: 50px;
+z-index:1;
+bottom: 0;
+padding: 0;
+margin: 0;
+}
+.businessType{
+display:flex;
+flex-direction: row;
+padding-bottom:8px;
+}
+.businessType label{
+width:100px;
+font-size:11px;
+padding: 9px 0px;
+}
+.businessTime{
+font-size:12px;
+display:flex;
+flex-direction: row;
+}
+.businessTime p{
+width:45px;
+margin:7px 0px;
+}
+.businessTime label{
+margin:7px 0px;	
+}
+.businessTime .workTime{
+display: flex;
+padding-bottom:8px;
+margin:0;
+}
+.workTime .form-control{
+width: auto;
+}
+.optionTime{
+padding: 0px 20px;
+}
+/*-------------- setting-address --------*/
+#layer{
+display:none;
+position:fixed;
+overflow:hidden;
+transition: 0.4s;
+z-index:999;
+-webkit-overflow-scrolling:touch;
+}
+/*-------------- 프로필 사진 업로드--------------*/
+.userProfil{
+width:100%;
+height:240px;
+outline:none;
+}
+.changeProfile{
+font-size: 11px;
+margin: 8px;
+margin-bottom:4px;
+padding:8px;
+border: 1px solid #757575;
+border-radius:8%;
+}

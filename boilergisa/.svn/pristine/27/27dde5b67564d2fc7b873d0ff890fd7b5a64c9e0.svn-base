@@ -1,0 +1,59 @@
+package com.my.boilergisa.interceptor;
+
+import java.util.Map;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.ui.ModelMap;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.util.WebUtils;
+
+import com.my.boilergisa.dto.CustmrVO;
+import com.my.boilergisa.service.CustmrService;
+
+import lombok.extern.java.Log;
+
+@Component
+@Log
+public class CustmrInterceptor extends HandlerInterceptorAdapter{
+	
+	@Autowired 
+	CustmrService custmrService;
+	
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		
+		HttpSession session = request.getSession();
+        Object custmr = session.getAttribute("custmrID");
+ 
+        if(custmr == null){
+            Cookie custmrLogin = WebUtils.getCookie(request, "loginCookie");
+            
+            if ( custmrLogin != null ){
+            	String sessionKey = custmrLogin.getValue();
+            	
+            	CustmrVO checkKey = custmrService.checkLoginBefore(sessionKey);
+            	if(checkKey != null) {
+            		session.setAttribute("custmrID",checkKey);
+            		return true;
+            	}
+            }
+        }		
+		return true;
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+        super.postHandle(request, response, handler, modelAndView);
+    }
+}
+

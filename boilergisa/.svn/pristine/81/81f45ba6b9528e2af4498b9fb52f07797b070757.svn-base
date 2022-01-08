@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/basic">
+	<th:block layout:fragment="title">
+		<title>엔지니어 로그인 페이지</title>
+	</th:block>
+	<th:block layout:fragment="add-css"><link rel="stylesheet" th:href="@{/static/css/commons/login.css}" /></th:block>
+
+	<th:block layout:fragment="leftHeader"><img src="/static/img/commons/arrow-back.png" onclick="history.back();"></th:block>
+	<th:block layout:fragment="centerHeader"><h5>엔지니어 로그인</h5></th:block>
+
+<th:block layout:fragment="content">
+<div class="container">
+	<div class="mainLogin">
+	<form id ="engnrLogin" name="engnrLogin" method="post">
+		<div class="form-group">
+			<input type="email" class="form-control" placeholder="이메일 주소를 입력해주세요" id="engnrID" name="engnrID" maxlength="50" />
+		</div>
+		<div class="form-group">
+			<input type="password" class="form-control" placeholder="비밀번호를 입력해주세요" id="engnrPassword" name="engnrPassword" maxlength="50">
+		</div>
+		<div class="form-group">
+			<label for="engnrCookie"><input type="checkbox" name="engnrCookie" id="engnrCookie"/><span>자동로그인</span></label>
+		</div>
+      	
+   	 </form>
+   	 	<button type="button" id="engnrBtn" onclick=";">로그인</button>
+		<div class="findPw" onclick="location.href='#'"><p>비밀번호 찾기<p></div>
+	</div>
+</div>
+</th:block>
+<th:block layout:fragment="script">
+	<script th:src="@{/static/script/engnr/engnrLoginCheck.js}"></script>
+</th:block>
+</html>

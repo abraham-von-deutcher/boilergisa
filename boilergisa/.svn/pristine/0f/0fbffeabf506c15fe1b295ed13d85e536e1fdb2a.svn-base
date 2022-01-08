@@ -1,0 +1,22 @@
+package com.my.boilergisa.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+import com.my.boilergisa.dto.EngnrFileVO;
+
+@Mapper
+public interface EngnrFileTbMapper {
+	
+	
+	public int insertFile(List<Map<String, Object>> fileList) throws Exception;
+	
+	public EngnrFileVO selectFileDetail(Long fileIdx) throws Exception;
+	
+	public int deleteFile(Long engnrNo) throws Exception;
+	
+	public List<EngnrFileVO> selectFileList(Long fileIdx) throws Exception;
+	
+	public int selectFileTotalCount(Long fileIdx)throws Exception;
+}

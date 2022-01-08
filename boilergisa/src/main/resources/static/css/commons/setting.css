@@ -1,0 +1,10 @@
+.main-content p{
+	margin:0;
+	padding:10px;
+	background: #e2e2e2;
+}
+ul li{
+	padding:10px;
+	border-bottom: 1px solid #dddddd;
+	padding-left:16px;
+}

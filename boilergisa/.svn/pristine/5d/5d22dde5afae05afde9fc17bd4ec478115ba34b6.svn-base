@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/dist/css/bgs.css">
+<link rel="stylesheet" href="/resources/dist/css/setting.css">
+
+<title>마이페이지</title>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="setting">
+<header id="bgHeader">
+  <div class="backHeader"><img src="/resources/dist/img/arrow-back.png" onclick="history.back();"></div>
+    <div class="centerHeader"><h3>개인설정</h3></div>
+     <div class="nextHeader"></div>
+  </header>
+     <div id="userSetting" class="userSetting" data-role="main">
+         <ul class="title-list">
+	         <p>개인</p>
+	         <li>
+                <ul class="info-person">
+                 <li onclick="location.href='/user/userModify'">회원정보 변경</li>
+			     <li onclick="location.href='/user/userLogout'">로그아웃</li>
+                </ul>
+             </li>			 
+		 </ul>
+		 
+	 </div>
+	</div>
+</body>
+</html>

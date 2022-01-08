@@ -1,0 +1,74 @@
+.main{
+	padding-bottom:66px;
+}
+.engnrProfil{
+	width:100%;
+	height:240px;
+	outline:none;
+}
+.engnrProfil img{
+	width:100%;
+	height:240px;
+}
+.inputEngnrInfo{
+	padding:8px;
+}
+.engnrDetail{
+	width:100%;
+	font-size: 0.9em;
+}
+.engnrDetail h5{	
+	font-weight:bolder;
+}
+.engnrDetail span{
+	padding-left: 6px;
+	font-weight: bold;
+}
+
+.engnrDetail .engnrIntro{
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 7;
+	-webkit-box-orient: vertical;
+}
+.btn_more{
+	display:none;
+	float:right;
+	padding-right:8px;
+	color:#33B8FF;
+	cursor: pointer;	
+}
+
+.businessTime{
+	display:flex;
+	font-size: 0.9em;
+}
+.dateInfo{
+	padding-left: 16px;
+}
+.timeInfo{
+	padding-left: 16px;
+}
+/*----------------REVIEW----------------*/
+.gradeInfo{
+	width:100%;
+	height:80px;
+	font-weight: bolder;
+	border-top: 1px solid #d3d3d3;
+	text-align:center;
+}
+.gradeInfo .gradeRecord{
+	font-size: 18px;
+	color: #959595;
+	padding:30px 0;
+	margin:0 auto;
+}
+.gradeInfo span{
+	font-size: 25px;
+	color: #33B8FF;
+	padding-right: 8px;
+}
+.engnrRecord{
+	padding-left: 48px;
+}

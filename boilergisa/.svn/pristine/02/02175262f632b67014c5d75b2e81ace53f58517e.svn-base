@@ -1,0 +1,199 @@
+$(document).ready(function() {
+	
+	$("#userBtn").prop("disable", true);
+	var emailOk = false;
+    var pw1Ok = false;
+    var pw2Ok = false;
+    var nameOk = false;
+    var agreeOk = false;
+    var isOk = false;    
+    
+    
+    //E-mail 체크
+    $("#userID").blur(function(){
+        
+        var chkEmail = /^[a-zA-Z0-9]+@([a-zA-Z0-9]{1,10})\.([a-zA-Z]{1,10})+$/;
+        
+		if($("#userID").val()==''){			
+			$('#emailCheck').html('아이디를 입력하세요.');
+			$('#emailCheck').css('color', 'red');
+			emailOk = false;
+			$("#userBtn").prop("disabled",true);
+			
+		}else if(chkEmail.test($("#userID").val())!= true){			
+			$('#emailCheck').html('4~12자의 영문, 숫자만 사용 가능합니다.');
+			$('#emailCheck').css('color', 'red');
+			emailOk = false;
+			$("#userBtn").prop("disabled",true);
+			
+		}else if($("#userID").val()!=''){
+			var userEmail = $("#userID").val();
+			
+			
+			
+			$.ajax({
+		    url: '/user/userIdCheck',
+		    type: 'POST',
+		    dataType: 'json', //서버로부터 내가 받는 데이터의 타입
+		    data: userEmail,
+			contentType: "application/json; charset=UTF-8",
+		    success: function(data){
+				if(data.confirm === "NO"){
+					emailOk = false;
+					$('#emailCheck').html('이미 존재하는 아이디입니다.');  
+					$('#emailCheck').css('color', 'red');
+					$("#userBtn").prop("disabled",true);
+				}else{
+					if (chkEmail.test(userEmail)){
+						emailOk = true;
+						$('#emailCheck').html('사용 가능한 아이디입니다.');  
+						$('#emailCheck').css('color', '#33B8FF');
+						
+						isOk = allOk(emailOk, pw1Ok, pw2Ok, nameOk, agreeOk);
+			            if( isOk == true ){
+			                $("#userBtn").prop("disabled",false);
+			            }
+					} else if(userEmail==""){
+						emailOk = false;
+						$('#emailCheck').html('아이디를 입력하세요.');
+						$('#emailCheck').css('color', 'red');
+						$("#userBtn").prop("disabled",true);
+					}else{
+						emailOk = false;
+						$('#emailCheck').html("이메일 양식을 확인해주세요.");
+						$('#emailCheck').css('color', 'red');
+						$("#userBtn").prop("disabled",true);
+					}
+				}
+			},
+			    error: function (){
+					
+			    }
+			});
+			
+			
+			
+			
+			
+			
+			
+		}
+    });
+		
+	//이름 길이 체크. 2자~20자까지
+	$("#userName").blur(function(){
+        var inputLen = $("#userName").val().length;
+        var chkName =   /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
+        var nameResult = chkName.test( $("#userName").val() );
+        
+        
+        //길이에 맞지 않거나 공백이 포함되어 있는 경우
+        if((inputLen < 2 || inputLen > 20) || nameResult){            
+            nameOk = false;            
+            $("#userBtn").prop("disabled",true);
+			$('#nameCheck').html("한글 2~4자 이내로 입력하세요. (특수기호, 공백 사용 불가)");
+			$('#nameCheck').css('color', 'red');
+            
+        }else{            
+            nameOk = true;
+            $("#userBtn").prop("disabled",true);
+			$('#nameCheck').html("사용 가능한 이름입니다.");
+			$('#nameCheck').css('color', '#33B8FF');
+			
+            isOk = allOk(emailOk, pw1Ok, pw2Ok, nameOk, agreeOk);
+            if( isOk == true ){
+                $("#userBtn").prop("disabled",false);
+                
+            }
+        }
+    });
+	
+	//PW 길이 체크
+    $("#userPassword").blur(function(){
+		var chkPw = /^[A-Za-z0-9]{4,12}$/;
+		
+        if( $("#userPassword").val().length < 8 ){
+            pw1Ok = false;
+            $("#userBtn").prop("disabled",true);
+            $('#pwCheck').html("비밀번호는 8자 이상으로 입력해주세요.");
+			$('#pwCheck').css('color', 'red');            
+        }else if(chkPw.test( $("#userPassword").val() )){
+			 pw1Ok = false;
+			$("#userBtn").prop("disabled",true);
+            $('#pwCheck').html("4~12자의 숫자, 문자로만 사용 가능합니다.");
+			$('#pwCheck').css('color', 'red');
+		}else{
+            pw1Ok = true;
+            $('#pwCheck').html("사용 가능한 비밀번호입니다.");
+			$('#pwCheck').css('color', '#33B8FF');
+			    
+            isOk = allOk(emailOk, pw1Ok, pw2Ok, nameOk, agreeOk);
+            if( isOk == true ){
+                $("#userBtn").prop("disabled",false);                
+            }
+        }
+    });
+    
+    //PW 확인 체크
+    $("#checkPass").blur(function(){
+        var pw1 = $("#userPassword").val();
+        var pw2 = $("#checkPass").val();
+        if( pw1 == pw2 ){
+            pw2Ok = true;
+			$('#pw2Check').html("비밀번호가 일치합니다.");
+			$('#pw2Check').css('color', '#33B8FF');
+			
+            isOk = allOk(emailOk, pw1Ok, pw2Ok, nameOk, agreeOk);
+            if( isOk == true ){
+                $("#userBtn").prop("disabled",false);
+            }
+        }else{
+            pw2Ok = false;
+			$('#pw2Check').html("비밀번호가 일치하지 않습니다.");
+            $('#pw2Check').css('color', 'red');
+            $("#userBtn").prop("disabled",true);
+        }
+    });
+	
+	
+	$("#agreeRegister").change(function(){
+		if($("#agreeRegister").is(":checked")){
+			agreeOk = true;
+			isOk = allOk(emailOk, pw1Ok, pw2Ok, nameOk, agreeOk);
+            if( isOk == true ){
+                $("#userBtn").prop("disabled",false);
+            }
+		}else{
+			agreeOk = false;
+			$("#userBtn").prop("disabled",true);
+		}	
+	});
+});
+
+
+function allOk( ok1, ok2, ok3, ok4, ok5 ){
+	if( ok1 && ok2 && ok3 && ok4 && ok5 ){
+        return true;
+	} else {
+        return false;
+    }
+}
+
+/*
+function userRegister(){
+	var userRegister = $("form[name=userRegister]").serialize();
+	
+	$.ajax({    	
+		url: "/user/userRegister",
+		data: userRegister,
+		enctype: 'multipart/form-data',
+		dataType: "json",
+		error: function(xhr, status, error){
+                alert(error);
+		},
+		success : function(json){
+                alert(json)
+            },
+        });
+}
+*/       

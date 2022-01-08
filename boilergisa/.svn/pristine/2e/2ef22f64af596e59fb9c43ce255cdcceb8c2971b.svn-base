@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/basic">
+	<th:block layout:fragment="title">
+		<title>엔지니어정보 수정</title>
+	</th:block>
+	<th:block layout:fragment="add-css"><link rel="stylesheet" th:href="@{/static/css/engnr/engnrUpdate.css}" /></th:block>
+	<th:block layout:fragment="leftHeader"><img src="/static/img/commons/arrow-back.png" onclick="history.back();"></th:block>
+	<th:block layout:fragment="centerHeader"><h5>엔지니어 정보</h5></th:block>
+
+ <th:block layout:fragment="content">
+<div class="container">
+	<div class="showProfile">
+		<img class="preImg" th:if="${#strings.isEmpty(engnr.getEngnrProfile())}" th:src="@{/static/img/engnr/addimg_engnr.png}">
+		<button type="button" id="profileChangeBtn">
+			<img src="/static/img/commons/add_img_white.png">사진변경
+		</button>
+		<div class="preProfile"></div>
+	</div>
+	
+	
+<form id="engnrUpdate" name="engnrUpdate" method="post" enctype="multipart/form-data">
+	<div class="inputInfo">
+		<input type="file" id="file" name="file" style="display:none;">
+		<input type="hidden" id="engnrNo" name="engnrNo" th:value="${engnr.getEngnrNo()}">
+		<input type="hidden" id="engnrID" name="engnrID" th:value="${engnr.getEngnrID()}">
+	  
+	<div class="form-group">
+		<input type="text" id="engnrName" name="engnrName" maxlength="20" class="form-control" placeholder="상호를 입력하세요" th:value="${engnr.getEngnrName()}" readonly>
+	</div>
+	  
+	<div class="form-group findAddrs">
+		<button class="findAddrsBtn" type="button" onclick="sample2_execDaumPostcode()">주소검색</button>
+		<input type="text" id="engnrAddress1" name="engnrAddress1" maxlength="50" class="form-control" placeholder="주소를 입력해주세요."  th:value="${engnr.getEngnrAddress1()}">
+	</div>	
+	  
+	<div class ="layer" id="layer">
+		<button type="button" class="closeLayer" onclick="closeDaumPostcode()">닫기</button>
+	</div>
+	  
+	<div class="form-group">
+		<input type="text"  id="engnrAddress2" name="engnrAddress2" maxlength="20" class="form-control" placeholder="상세주소 입력. 예) XX아파트  101동 101호"  th:value="${engnr.getEngnrAddress2()}">
+	</div>  
+	  
+	<div class="form-group">
+		<label for="engnrNumber">* 전화번호</label>
+		<input type="text" id="engnrNumber" name="engnrNumber" maxlength="20" class="form-control" placeholder="전화번호를 입력하세요."  th:value="${engnr.getEngnrNumber()}">
+	</div>
+	  
+	<div class="form-group">
+		<label for="engnrIntro">* 엔지니어 및 사업장 소개</label>
+		<textarea id="engnrIntro" name="engnrIntro" maxlength="500" class="form-control" placeholder="최대 500자 까지 됩니다."  th:text="${engnr.getEngnrIntro()}"></textarea>
+	</div>	  
+	  
+	<div class="form-group">
+		<label for="businessType">* 업체유형</label>
+		<input type="text" id="businessType" name="businessType" maxlength="20" class="form-control" placeholder="업태 및 업종"  th:value="${engnr.getBusinessType()}">
+	</div>	
+	  
+	<div class="form-inline">
+		<label>* 영업시간</label>
+		<div class="form-group">
+			<label for="workTime1">평 일</label>
+			<input type="text" id="workTime1" class="form-control" name="workTime1" placeholder="09:00~18:00" th:value="${engnr.getWorkTime1()}">
+		</div>
+		<div class="form-group">
+			<label for="workTime2">토요일</label>
+			<input type="text" id="workTime2" class="form-control"name="workTime2" placeholder="09:00~18:00" th:value="${engnr.getWorkTime2()}">
+		</div>
+		<div class="form-group">
+		<label for="breakTime">휴무일</label>
+			<select name="breakTime" id="breakTime" class="form-control">
+				<option value="토,일">토,일</option>
+				<option value="일요일">일요일</option>
+				<option value="없음">없음</option>
+			</select>
+		</div>
+	</div>
+	</div>
+</form>
+	<input type="button" id="engnrUpdateBtn" value="정보 수정">
+</div>
+ </th:block>
+ <th:block layout:fragment="script">
+	<script th:src="@{/static/script/engnr/engnrModify.js}"></script>
+	<script th:src="@{/static/script/commons/daumPostcode.js}"></script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</th:block>
+ 
+</html>

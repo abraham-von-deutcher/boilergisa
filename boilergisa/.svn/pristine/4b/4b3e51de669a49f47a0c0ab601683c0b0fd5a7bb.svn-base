@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/basic">
+	<th:block layout:fragment="title">
+		<title>고객 설정페이지</title>
+	</th:block>
+	<th:block layout:fragment="add-css"><link rel="stylesheet" th:href="@{/static/css/commons/setting.css}" /></th:block>
+
+	<th:block layout:fragment="leftHeader"><img src="/static/img/commons/arrow-back.png" onclick="history.back();"></th:block>
+	<th:block layout:fragment="centerHeader"><h5>개인설정</h5></th:block>
+	
+<th:block layout:fragment="content">
+	<div>
+		<p>계정</p>
+		<ul class="settingList">
+			<li onclick="location.href='/user/userModify'">회원정보 변경</li>
+			<li onclick="location.href='/user/userLogout'">로그아웃</li>
+		</ul>
+	</div>
+</th:block>
+</html>
