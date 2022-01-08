@@ -20,6 +20,32 @@ $('#file').on("change", function(e) {
 	reader.readAsDataURL( e.target.files[0]);	
 });
 
+function fileTypeCheck(obj) {
+
+	pathpoint = obj.value.lastIndexOf('.');
+
+	filepoint = obj.value.substring(pathpoint+1,obj.length);
+
+	filetype = filepoint.toLowerCase();
+
+	if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp') {
+
+		// 정상적인 이미지 확장자 파일인 경우
+
+	} else {
+
+		alert('Only image file can be uploaded!');
+
+		parentObj  = obj.parentNode
+
+		node = parentObj.replaceChild(obj.cloneNode(true),obj);
+
+		return false;
+
+	}
+
+}
+
 //회원정보 수정 버튼
 $('#engnrUpdateBtn').click(function(){
 	var engnrNo = $("#engnrNo").val();

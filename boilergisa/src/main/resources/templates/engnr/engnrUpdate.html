@@ -19,7 +19,7 @@
 	
 	<form id="engnrUpdate" name="engnrUpdate" method="post" enctype="multipart/form-data">
 		<div class="inputInfo">
-			<input type="file" id="file" name="file" style="display:none;">
+			<input type="file" id="file" name="file" style="display:none;"accept="image/gif, image/jpeg, image/png">
 			<input type="hidden" id="engnrNo" name="engnrNo" th:value="${engnr.getEngnrNo()}">
 			<input type="hidden" id="engnrID" name="engnrID" th:value="${engnr.getEngnrID()}">
 			<input type="hidden" id="changeYn" value="N" />
