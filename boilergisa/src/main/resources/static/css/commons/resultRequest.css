@@ -1,0 +1,351 @@
+textarea{
+font-size: 12px;
+}
+p{
+font-size: 12px;
+width:100%;
+}
+h4{
+width:100%;
+font-size: 14px;
+font-weight: bold;
+}
+select { 
+border-radius:0;
+text-align: center;
+-webkit-appearance:none; 
+-moz-appearance:none; 
+appearance:none;
+}
+
+.uploadPhotos{
+position:relative;
+cursor: pointer;
+padding-bottom:16px;
+}
+.uploadContent{
+width:100%;
+height:240px;
+background: #e2e2e2;
+}
+
+.uploadContent .uploadContext{
+text-align:center;
+color: #8e8e8e;
+padding-top: 20px;	
+}
+.addPhotos{
+width: 100px;
+height: 30px;
+display: flex;
+right:25px;
+bottom:121px;
+font-size: 13px;
+color: #ffffff;
+align-items: center;
+background-color: #33B8FF; 
+border-radius: 5px;
+position:absolute;
+z-index:99;
+cursor:pointer;
+}
+.addPhotos img{
+width: 30px;
+height: 30px;
+padding: 5%;
+align-self: center;
+}
+.slider-nav{
+width:100%;
+height:74px;
+display:flex;
+bottom:0;
+padding-top: 8px;
+}
+.slider-nav > li{
+width:25%;
+background: #e2e2e2;
+margin:0 1px;
+}
+.slider-nav  li img{
+width:100%;
+height:100%;
+}
+.addFiles{
+width:100%;
+height:314px;
+top:0;
+position:absolute;
+}
+.addSlider{
+width:100%;
+height:240px;
+}
+.addSlider ul li{
+width:100%;
+height:100%;
+background-size: cover;
+background-position: center;
+}
+.addSlider ul li img{
+width:100%;
+height:100%;
+}
+.addSlider-nav{
+width:100%;
+height:70px;
+display:flex;
+bottom:0;
+padding-top:4px;
+position:absolute;
+}
+.addSlider-nav li{
+width:25%;
+margin:0 1px;
+}
+.addSlider-nav li img{
+width:100%;
+height:100%;
+}
+.swiper-wrapper .delBtn{
+top:0px;
+right:0px;
+width:10px;
+height:10px;	
+	
+}
+
+
+
+
+
+
+
+
+
+
+.resvNm{
+color:#33B8FF;
+}
+.btn-notActive{
+color: #000;
+background-color: #fff;
+}
+.infoHouse{
+padding-top:10px;
+width: 100%;
+}
+.infoHouse label{
+display:flex;
+}
+.infoHouse label span{
+padding:6px;
+}
+.resultSpace{
+width: 100%;
+font-size: 12px;
+color: #FF0000;
+font-weight: bold;
+margin-bottom:10px;
+}
+.optionBoiler{
+width: 100%;
+display: flex;
+}
+.optionBoiler select{
+vertical-align: middle;
+text-align-last: center;
+font-size:13px;
+}
+.optionBoiler .floor{
+width: 30%;
+padding:0 4px;
+text-align:center;
+}
+.optionBoiler .kinds{
+width: 35%;
+padding:0 4px;
+text-align:center;
+}
+.optionBoiler .fuel{
+width: 35%;
+padding:0 4px;
+text-align:center;
+}
+.infoPurpose{
+font-size: 13px;
+color: #FF0000;
+font-weight: bolder;
+padding:0;
+margin:0;
+}
+.morePurpose{
+font-weight:bold;
+}
+.detailsPurpose{
+font-size: 12px;
+color: #000;
+padding:4px;
+display:none;
+}
+.detailsPurpose p{
+margin:0;
+padding:0;
+}
+.optionBoiler .installPlace{
+width: 36%;
+padding:0 4px;
+text-align:center;
+}
+.optionBoiler .kindsWaterHeater{
+width: 39%;
+padding:0 4px;
+text-align:center;
+}
+.optionBoiler .volume{
+width: 25%;
+padding:0 4px;
+text-align:center;
+}
+.prerequisite{
+font-size: 13px;
+color: #FF9800;
+font-weight: bold;
+padding: 8px;
+margin: 0;
+}
+.brand{
+width: auto;
+height: auto;
+padding-top:10px;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+}
+.custom-radio{
+width: 50%;
+height: auto;
+}
+.custom-control-label{
+border:1px solid #00000048;
+border-radius: 5%;;
+margin: 1%;
+padding: 7%;
+display: flex;
+align-items: center;
+}
+.custom-control-label input{
+width:10%;
+}
+.custom-control-label img{
+width: 90%;
+}
+.custom-control-label span{
+font-size:13px;
+padding: 7px;
+font-weight:normal;
+}
+.findBtn input{
+margin-top: 8px;
+}
+.findBtn button{
+width: 80px;
+height: 40px;
+border:1px solid #8f8f8f;
+border-radius: 5%;
+background: #e9e9e9;
+}
+#layer{
+display: none;
+position: fixed;
+overflow: hidden;
+transition: 0.4s;
+z-index: 999;
+-webkit-overflow-scrolling: touch;
+}
+#btnCloseLayer{
+cursor: pointer;
+position: absolute;
+width: 100%;
+height: 50px;
+z-index:1;
+bottom: 0;
+padding: 0;
+margin: 0;
+}
+.pNumber{
+width: 100%;
+height: 100%;
+padding: 0px;
+font-size: 13px;
+margin: 0;
+}
+.form-check{
+padding-top: 10px;
+}
+/*----------------ContactButton----------------*/
+.requestUpdate{
+width:100%;
+display: flex;
+padding: 16px 0px;
+color:#ffffff;
+}
+.requestUpdate .requestModify{
+width: 50%;
+height: 40px;
+padding: 0px;
+margin: 5px;
+border: none;
+outline: none;
+background-color: rgb(51, 184, 255);
+}
+.requestUpdate .requestModify:hover{
+background-color: rgb(0, 167, 255);	
+}
+.requestUpdate .requestDel{
+width: 50%;
+height: 40px;
+padding: 0px;
+margin: 5px;
+border: none;
+outline: none;
+background-color: rgba(160, 166, 170, 0.83);
+}
+.requestUpdate .requestDel:hover{
+background-color: rgba(130, 134, 137, 0.83);
+}
+.quoteResponse{
+width: 100%;
+position: fixed;
+color:#ffffff;
+bottom: 0;
+right: 0;
+left: 0;
+padding: 0;
+margin: 0;
+}
+.quoteResponse #responseButton{
+width: 100%;
+height: 50px;
+background-color: #ff9900dc;
+border: none;
+outline: none;
+font-size: 1em;
+}
+#requestInstall{
+width: 100%;
+height: 60px;
+bottom: 0;
+padding: 0;
+margin: 0;
+position :fixed;
+font-size: 16px;
+color: #ffffff;
+font-weight: bold;
+background-color: rgba(54, 185, 255, 0.83);
+z-index: 9;
+border: none;
+}
+#requestInstall:disabled{
+background:#d3d3d3;
+}

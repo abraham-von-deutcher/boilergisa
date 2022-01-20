@@ -1,0 +1,94 @@
+body{
+	background-color:#000000;
+
+}
+/*------------------------ header ------------------------*/
+.navbar{
+	background-color:#000000;
+	border:0;
+}
+.navbar .container{
+margin:10px 0px;	
+}
+.navbar img{
+width:30px;
+height:30px;
+margin-right:10px;
+cursor:pointer;
+}
+.navbar img:hover{
+background-color: #000000;
+}
+.nextQuote:hover{
+background-color: #000000;
+}
+.navbar h5{
+color:#ffffff;
+display:inline-block;
+margin: 0 auto;
+font-weight: bolder;
+}
+
+/*------------------------ container ------------------------*/
+
+
+.swiper-container{
+	width:100%;
+	height:314px;	
+	position:relative;	
+	top:150px;
+}
+
+.swiper-container ul li{
+	width:100%;
+	padding:0 15px;
+/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.swiper-pagination{
+	color:#ffffff;
+	font-size:15px;
+}
+
+/*------------------------ FOOTER ------------------------*/
+.operationImage{
+	width: 100%;
+	height: 63px;
+	padding:0;
+	margin:0;
+	bottom: 0;
+	position: fixed;
+	display: flex;
+} 
+.operationImage li{	
+	width: 20%;
+	text-align: center;
+	cursor: pointer;
+	line-height: 25px;
+	padding: 10px 0;
+}
+.operationImage li img{
+width: 25px;
+height: 25px;
+}
+.operationImage li:hover{
+background-color: #e7e7e7;
+}

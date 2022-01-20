@@ -2,24 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.my.boilergisa.dao.EngnrFileTbMapper">
  	
- 	<select id="engnrFileList" parameterType="com.my.boilergisa.dto.EngnrFileVO" resultType="com.my.boilergisa.dto.EngnrFileVO">
+ 	<resultMap type="com.my.boilergisa.dto.EngnrFileVO" id="engnrFileList">
+ 		<result property="fileIdx" column="file_idx"/>
+ 		<result property="typePath" column="path"/>
+ 		<result property="typeNo" column="engnr_no"/>
+ 		<result property="originalName" column="original_name"/>
+ 		<result property="thumbnailName" column="thumbnail_name"/>
+ 		<result property="fileSize" column="file_size"/>
+ 		<result property="deleteYn" column="delete_yn"/>
+ 		<result property="insertDate" column="insert_time"/>
+ 		<result property="deleteDate" column="insert_time"/>
+ 	</resultMap>
+ 	
+ 	<select id="engnrFileList" resultMap="engnrFileList">
 		SELECT
-			file_idx
+			file_idx,
+			path,
 			engnr_no,
 			original_name,
 			thumbnail_name,
 			file_size,
-			delete_yn,
-			insert_time,
-			delete_time
+			insert_time
 		FROM
 			engnrFileTb
-		WHERE
-			engnr_no = #{engnrNo} order by file_idx DESC
+		<where>
+			delete_yn = 'N'			
+			<if test="fileIdx !=null and fileIdx !=''"><![CDATA[ and file_idx = #{fileIdx} ]]></if>
+			<if test="typeNo !=null and typeNo !=''"><![CDATA[ and engnr_no = #{typeNo} ]]></if>
+			<if test="typePath !=null and typePath !=''"><![CDATA[ and path = #{typePath} ]]></if>
+			<if test="originalName !=null and originalName !=''"><![CDATA[ and original_name = #{originalName} ]]></if>
+			<if test="thumbnailName !=null and thumbnailName !=''"><![CDATA[ and thumbnail_name = #{thumbnailName} ]]></if>
+			<if test="fileSize !=null and fileSize !=''"><![CDATA[ and file_size = #{fileSize} ]]></if>
+			<if test="insertDate !=null and insertDate !=''"><![CDATA[ and insert_time = #{insertDate} ]]></if>
+		</where>
+			order by file_idx DESC
 	</select>
 	
  	<insert id="insertFile" parameterType="com.my.boilergisa.dto.EngnrFileVO">
 		INSERT INTO engnrFileTb(
+			path,
 			engnr_no,
 			original_name,
 			thumbnail_name,
@@ -28,19 +49,36 @@
 			insert_time,
 			delete_time
 		)VALUES(
-			#{engnrNo}
-			,#{originalName}
-			,#{thumbnailName}
-			,#{fileSize}
-			,'N'
-			,NOW()
-			,NULL
+			#{typePath},
+			#{typeNo},
+			#{originalName},
+			#{thumbnailName},
+			#{fileSize},
+			'N',
+			NOW(),
+			NULL
 		)
 	</insert>
 
+	<select id="engnrTotalCount" resultMap="engnrFileList">
+			SELECT
+				COUNT(*)
+			FROM
+				engnrFileTb
+			<where>
+				delete_yn = 'N'
+				AND
+				<if test="fileIdx !=null and fileIdx !=''"><![CDATA[ and file_idx = #{fileIdx} ]]></if>
+				
+			</where>
+				order by file_idx DESC
+	</select>
+	
 	<update id="deleteFile" parameterType="Long">
-		DELETE 
-		FROM engnrFileTb
+		UPDATE engnrFileTb
+		SET
+			delete_yn = 'Y',
+			delete_time = NOW()
 		WHERE
 			file_idx = #{fileIdx}
 	</update>

@@ -10,7 +10,7 @@
  <th:block layout:fragment="content">
 <div class="container">
 	<div class="showProfile">
-		<img class="preImg" th:src="@{/boilergisa/engnr/{engnrNo}(engnrNo = ${engnr.getEngnrNo()})}">
+		<img class="preImg" th:src="@{/boilergisa/engnr/{engnrNo}(engnrNo=${engnr.getEngnrNo()})}">
 		<button type="button" id="profileChangeBtn">
 			<img src="/static/img/commons/add_img_white.png">사진변경
 		</button>

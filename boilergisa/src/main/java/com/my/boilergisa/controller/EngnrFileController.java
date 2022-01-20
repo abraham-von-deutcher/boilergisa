@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -33,6 +34,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.my.boilergisa.dto.EngnrFileVO;
+import com.my.boilergisa.dto.EngnrVO;
 import com.my.boilergisa.service.EngnrFileService;
 import com.my.boilergisa.utils.EngnrFileUtils;
 
@@ -46,22 +48,34 @@ public class EngnrFileController {
 	@Autowired
 	EngnrFileService engnrFileService;
 	
-	@GetMapping(value="/showFiles/engnr/{engnrNo}")
+	@GetMapping(value="/showImage/engnr/{engnrNo}")
 	public ModelAndView showAttachList(@PathVariable String engnrNo, HttpServletRequest req, HttpServletResponse response) throws Exception {
 		
 		ModelAndView mv = new ModelAndView();
 		
+		EngnrFileVO eDTO = new EngnrFileVO();
+		EngnrVO engnr = new EngnrVO();
 		
+		eDTO.setTypeNo(engnrNo);
 		
+		List<EngnrFileVO> fileList = engnrFileService.engnrFileList(eDTO);		
+		EngnrFileVO fileInfo = engnrFileService.engnrFileList(eDTO).get(0);
 		
+		engnr.setEngnrNumber(engnrNo);		
 		
+		mv.addObject("fileInfo", fileInfo);
+		mv.addObject("fileList", fileList);
+		
+		mv.addObject("engnr", engnr);
+		mv.setViewName("/commons/showImage");
 		
 		return mv;
 	}
 	
 	//엔지니어 프로필 파일정보
-	@GetMapping(value="/boilergisa/engnr/{engnrNo}")
-	public void recentEngnrFile(@PathVariable String engnrNo, HttpServletRequest req, HttpServletResponse response) throws Exception {
+	@GetMapping(value="/uploadType/engnr/{engnrNo}/{fileIdx}")
+	public void showOriginFiles(@PathVariable String engnrNo, @PathVariable Long fileIdx, HttpServletRequest req, HttpServletResponse response) throws Exception {
+		
 		String fileName = "";
 		String contentType = "";
 		String filePath = "";
@@ -72,13 +86,71 @@ public class EngnrFileController {
 		try {
 		
 			EngnrFileVO eDTO = new EngnrFileVO(); 
-			eDTO.setEngnrNo(engnrNo);
+			eDTO.setFileIdx(fileIdx);
+			
+			EngnrFileVO engnrFile = engnrFileService.engnrFileList(eDTO).get(0);
+			
+			String originName = engnrFile.getOriginalName();
+			String typePath = engnrFile.getTypePath();
+			//String originalFilename = engnrFile.getOriginalName();
+			filePath = getBasePath + typePath + "/" + engnrNo + "/" + originName;			
+			
+			inputStream = new FileInputStream(filePath); 			
+			fileName = URLEncoder.encode(originName, "UTF-8");
+			
+		} catch (Exception e) {
+			ClassPathResource resource = new ClassPathResource("/static/img/commons/addimg_engnr.png");
+			try {
+				inputStream = new FileInputStream(resource.getFile());
+			} catch(Exception e2) {
+				inputStream = resource.getInputStream();
+			}
+			fileName = URLEncoder.encode("addimg_engnr.png", "UTF-8");
+			contentType = "image/png";
+		}
+		/*
+		response.setHeader("Content-Type", contentType);
+		//response.setHeader("Content-Length", file.length()+"");
+		
+		response.setHeader("Content-Disposition", "attachment; fileName=\"" + fileName + "\";");
+		response.setHeader("Content-Description", "File Transfer");
+		
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		response.setHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
+		response.setHeader("Pragma", "public");
+		*/
+		OutputStream out = response.getOutputStream();
+		FileCopyUtils.copy(inputStream, out);
+
+		inputStream.close();
+		out.flush();
+		
+		
+	}
+	
+	//엔지니어 최근 파일정보
+	@GetMapping(value="/boilergisa/engnr/{engnrNo}")
+	public void recentEngnrThumbFile(@PathVariable String engnrNo, HttpServletRequest req, HttpServletResponse response) throws Exception {
+		String fileName = "";
+		String contentType = "";
+		String filePath = "";
+		InputStream inputStream = null;
+		
+		
+		String getBasePath = EngnrFileUtils.getBasePath();
+		
+		try {
+		
+			EngnrFileVO eDTO = new EngnrFileVO(); 
+			eDTO.setTypeNo(engnrNo);
 			
 			EngnrFileVO engnrFile = engnrFileService.engnrFileList(eDTO).get(0);
 			
 			String thumbnailFilename = engnrFile.getThumbnailName();
+			String typePath = engnrFile.getTypePath();
+			
 			//String originalFilename = engnrFile.getOriginalName();
-			filePath = getBasePath +"engnr" + "/" + engnrNo + "/" + thumbnailFilename;			
+			filePath = getBasePath + typePath + "/" + engnrNo + "/" + thumbnailFilename;			
 			
 			inputStream = new FileInputStream(filePath); 			
 			fileName = URLEncoder.encode(thumbnailFilename, "UTF-8");
@@ -111,7 +183,6 @@ public class EngnrFileController {
 		out.flush();
 	}
 	
-	
 	//엔지니어 파일 수정
 	@PostMapping(value="/engnr/engnrFile/{engnrNo}")
 	@ResponseBody	
@@ -119,6 +190,7 @@ public class EngnrFileController {
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		String baseFilePath = EngnrFileUtils.getBasePath();		
+		
 		
 		MultipartHttpServletRequest multiPart = (MultipartHttpServletRequest)httpServletRequest;
 		Iterator<String> fileNames = multiPart.getFileNames();
@@ -128,9 +200,10 @@ public class EngnrFileController {
 			//String inputName = file.getName();
 			if(!file.isEmpty()) {
 				
-				EngnrFileVO chkFileInfo = new EngnrFileVO();
-				chkFileInfo.setEngnrNo(engnrNo);
-				EngnrFileVO engnrFile = engnrFileService.engnrFileList(chkFileInfo).get(0);
+				EngnrFileVO eDTO = new EngnrFileVO();
+				eDTO.setTypeNo(engnrNo);
+				EngnrFileVO engnrFile = engnrFileService.engnrFileList(eDTO).get(0);
+				String typePath = engnrFile.getTypePath();
 				
 				Date nowDate = new Date();
 				SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMdd");
@@ -142,7 +215,7 @@ public class EngnrFileController {
 				String extension = FilenameUtils.getExtension(originalFileName);
 				
 				String newFileName = date + "_" + uuid.toString() + "_" +originalFileName + "." + extension;
-				String newFilePath =  baseFilePath + "engnr" + File.separator + engnrNo + File.separator;
+				String newFilePath =  baseFilePath + typePath + File.separator + engnrNo + File.separator;
 				File target = new File(newFilePath);
 				/* uploadPath에 해당하는 디렉터리가 존재하지 않으면, 부모 디렉터리를 포함한 모든 디렉터리를 생성 */
 				if(!target.exists()) {
@@ -166,7 +239,8 @@ public class EngnrFileController {
 				ImageIO.write(thumbnailImg, extension, newFile);
 				
 				/* 파일 정보 추가 */
-				engnrFile.setEngnrNo(engnrNo);
+				engnrFile.setTypePath(typePath);
+				engnrFile.setTypeNo(engnrNo);
 				engnrFile.setOriginalName(newFileName);
 				engnrFile.setThumbnailName(thumbnailImgName);
 				engnrFile.setFileSize(file.getSize());
@@ -181,7 +255,7 @@ public class EngnrFileController {
 		return resultMap;
 	}
 	//엔지니어 파일 삭제
-	@PostMapping(value="/engnr/deleteFile/{fileIdx}")
+	@PostMapping(value="/deleteType/engnr/{engnrNo}/{fileIdx}")
 	@ResponseBody	
 	public Map<String, Object>deleteEngnrFile(HttpServletRequest httpServletRequest, @PathVariable Long fileIdx) throws Exception{
 		
@@ -192,7 +266,7 @@ public class EngnrFileController {
 		getFile.setFileIdx(fileIdx);
 		
 		EngnrFileVO engnrFile = engnrFileService.engnrFileList(getFile).get(0);
-		EngnrFileUtils.deleteFile(engnrFile.getThumbnailName(), engnrFile.getEngnrNo(), baseFilePath);
+		EngnrFileUtils.deleteFile(engnrFile.getThumbnailName(), engnrFile.getTypeNo(), baseFilePath);
 		
 		engnrFileService.deleteFile(fileIdx);
 		

@@ -7,9 +7,13 @@ import lombok.Data;
 @Data
 public class EngnrFileVO {
 	Long fileIdx;
-	String engnrNo;
+	String typePath;
+	String typeNo;
 	String originalName;
 	String thumbnailName;
 	Long fileSize;
+	String delteYn;
 	Date insertDate;
+	Date deleteDate;
+	
 }

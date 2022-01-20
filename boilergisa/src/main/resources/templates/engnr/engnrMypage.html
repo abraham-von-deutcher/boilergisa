@@ -12,8 +12,8 @@
  <th:block layout:fragment="content">
  <div class="container">
 	<div class="engnrProfil">
-		<a th:href="@{/showFiles/engnr/{engnrNo}(engnrNo = ${engnr.getEngnrNo()})}">
-			<img class="preImg" th:src="@{/boilergisa/engnr/{engnrNo}(engnrNo = ${engnr.getEngnrNo()})}">
+		<a th:href="@{/showImage/engnr/{engnrNo}(engnrNo = ${engnr.engnrNo})}">
+			<img class="preImg" th:src="@{/boilergisa/engnr/{engnrNo}(engnrNo = ${engnr.engnrNo})}">
 		</a>
 	</div>
 	<div class="inputEngnrInfo">	

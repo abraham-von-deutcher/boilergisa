@@ -2,13 +2,24 @@
 $('#profileChangeBtn').click(function(){
 	$('#file').click();
 })
-
+//이미지파일체크,미리보기
 $('#file').on("change", function(e) {
+	var imgFile = $('#file').val();
+	var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/;
+	var maxSize = 5 * 1024 * 1024;
+	var fileSize = this.files[0].size;
 	
-	
+	if(!imgFile.match(fileForm)) {
+    	$('#checkMessage').html('이미지 파일만 업로드 가능합니다.');  
+		$("#checkModal").modal('show');
+        return;
+    } else if(fileSize > maxSize) {
+    	$('#checkMessage').html('파일용량이 기준을 초과하였습니다.');  
+		$("#checkModal").modal('show');
+        return;
+    }
 	
 	$("#changeYn").val("Y");
-	console.log($("#changeYn").val());
 	$('.preProfile').empty();
 	
     var reader = new FileReader();
@@ -20,31 +31,6 @@ $('#file').on("change", function(e) {
 	reader.readAsDataURL( e.target.files[0]);	
 });
 
-function fileTypeCheck(obj) {
-
-	pathpoint = obj.value.lastIndexOf('.');
-
-	filepoint = obj.value.substring(pathpoint+1,obj.length);
-
-	filetype = filepoint.toLowerCase();
-
-	if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp') {
-
-		// 정상적인 이미지 확장자 파일인 경우
-
-	} else {
-
-		alert('Only image file can be uploaded!');
-
-		parentObj  = obj.parentNode
-
-		node = parentObj.replaceChild(obj.cloneNode(true),obj);
-
-		return false;
-
-	}
-
-}
 
 //회원정보 수정 버튼
 $('#engnrUpdateBtn').click(function(){
@@ -144,14 +130,3 @@ function common_ajax(method, url, dataset, callback){
       }
    });
 }
-
-function fileCheck(obj){
-	pathpoint = obj.value.lastIndexOf('.');
-	filepoint = obj.value.substring(pathpoint + 1,obj.length);
-	
-}
-
-
-
-
-
