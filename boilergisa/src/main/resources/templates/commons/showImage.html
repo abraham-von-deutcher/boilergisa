@@ -16,7 +16,7 @@
 
 	<div class="swiper-container">
 		<ul class="swiper-wrapper">
-			<li class="swiper-slide" th:each="row, status:${fileList}">
+			<li class="swiper-slide" th:each="row, status:${fileList}"id="idx1">
 				<img th:src="@{|/uploadType/${row.typePath}/${row.typeNo}/${row.fileIdx}|}">	
 			</li>
 		</ul>
@@ -25,7 +25,7 @@
 	 <div class="operationImage">
 	 
    <ul>
-	   	<li id="delBtn" th:onclick="'location.href=\''+ @{|/deleteType/${fileInfo.typePath}/${fileInfo.typeNo}/|} + '\''">
+	   	<li id="delBtn">
 	   		<a th:href="@{|/deleteType/${fileInfo.typePath}/${fileInfo.typeNo}/|}"></a>
 	   		<img src="/static/img/commons/delBtn_wht.png">
 	   	</li>

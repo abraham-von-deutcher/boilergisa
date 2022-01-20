@@ -4,7 +4,7 @@
         pagination: {
 	          el: ".swiper-pagination",
 	          type: "fraction",
-        },        
+        },		
 	});
 	
 	swiper.on('slideChange',function(){
@@ -14,11 +14,11 @@
 	
 	
     
-    $(document).on("click", ".delBtn", function (event) {
-        event.preventDefault();
-        var that = $(this);
-        deleteFileWrtPage(that);
-    });
+    $("#delBtn").click(function(){
+	
+	    var curIdx = $(".swiper-wrapper").attr('id');
+        console.log(curIdx);
+	})
 
 })
 
